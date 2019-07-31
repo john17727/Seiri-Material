@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "d4cd004f783f1839e6c820788f5ac171",
+    "identityHash": "f744867b26792d880e6d388c97599360",
     "entities": [
       {
         "tableName": "course_table",
@@ -110,7 +110,7 @@
       },
       {
         "tableName": "assignment_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `title` TEXT, `dueDate` TEXT, `dueTime` TEXT, `type` TEXT, `course` TEXT, `addInfo` TEXT, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `title` TEXT, `dueDate` TEXT, `dueTime` TEXT, `type` TEXT, `course` TEXT, `addInfo` TEXT, `color` INTEGER NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -153,6 +153,12 @@
             "columnName": "addInfo",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "color",
+            "columnName": "color",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -168,7 +174,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd4cd004f783f1839e6c820788f5ac171')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f744867b26792d880e6d388c97599360')"
     ]
   }
 }

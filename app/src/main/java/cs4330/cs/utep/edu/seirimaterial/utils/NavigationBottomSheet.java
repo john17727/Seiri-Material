@@ -1,4 +1,4 @@
-package cs4330.cs.utep.edu.seirimaterial;
+package cs4330.cs.utep.edu.seirimaterial.utils;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+
+import cs4330.cs.utep.edu.seirimaterial.R;
+import cs4330.cs.utep.edu.seirimaterial.activities.AssignmentActivity;
+import cs4330.cs.utep.edu.seirimaterial.activities.CourseActivity;
 
 public class NavigationBottomSheet extends BottomSheetDialogFragment {
 
@@ -34,7 +38,7 @@ public class NavigationBottomSheet extends BottomSheetDialogFragment {
         coursesMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent toCourseActivity = new Intent(v.getContext(), MainActivity.class);
+                Intent toCourseActivity = new Intent(v.getContext(), CourseActivity.class);
                 startActivity(toCourseActivity);
                 getActivity().finish();
             }

@@ -1,4 +1,4 @@
-package cs4330.cs.utep.edu.seirimaterial;
+package cs4330.cs.utep.edu.seirimaterial.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
@@ -17,13 +17,16 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import cs4330.cs.utep.edu.seirimaterial.R;
+import cs4330.cs.utep.edu.seirimaterial.data.Course;
+import cs4330.cs.utep.edu.seirimaterial.models.CourseViewModel;
 import petrov.kristiyan.colorpicker.ColorPicker;
 
 public class AddCourse extends AppCompatActivity implements View.OnClickListener {
 
     public static final String TIME_FORMAT = "h:mm aa";
 
-    private ViewModel viewModel;
+    private CourseViewModel courseViewModel;
 
     private Calendar calendar;
     private TimePickerDialog.OnTimeSetListener startTimePicker;
@@ -61,7 +64,7 @@ public class AddCourse extends AppCompatActivity implements View.OnClickListener
 
     private CheckBox profSun, profMon, profTue, profWed, profThu, profFri, profSat;
 
-    MaterialButton addCourseButton;
+    private MaterialButton addCourseButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,7 +130,7 @@ public class AddCourse extends AppCompatActivity implements View.OnClickListener
 
         addCourseButton = findViewById(R.id.add_course_button);
 
-        viewModel = ViewModelProviders.of(this).get(ViewModel.class);
+        courseViewModel = ViewModelProviders.of(this).get(CourseViewModel.class);
 
         startTimePicker = new TimePickerDialog.OnTimeSetListener() {
             @Override
@@ -320,7 +323,7 @@ public class AddCourse extends AppCompatActivity implements View.OnClickListener
         }
 
         Course newCourse = new Course(name, building, room, days, courseStartTime, courseEndTime, profName, profEmail, profBuilding, profRoom, daysProf, profStartTime, profEndTime, cardColor);
-        viewModel.insert(newCourse);
+        courseViewModel.insert(newCourse);
         finish();
     }
 

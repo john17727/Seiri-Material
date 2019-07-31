@@ -1,4 +1,4 @@
-package cs4330.cs.utep.edu.seirimaterial;
+package cs4330.cs.utep.edu.seirimaterial.models;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
@@ -8,6 +8,8 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import java.util.List;
+
+import cs4330.cs.utep.edu.seirimaterial.data.Assignment;
 
 @Dao
 public interface AssignmentDao {

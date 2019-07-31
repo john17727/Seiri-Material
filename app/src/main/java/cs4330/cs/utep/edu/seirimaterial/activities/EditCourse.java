@@ -1,4 +1,4 @@
-package cs4330.cs.utep.edu.seirimaterial;
+package cs4330.cs.utep.edu.seirimaterial.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import cs4330.cs.utep.edu.seirimaterial.R;
 import petrov.kristiyan.colorpicker.ColorPicker;
 
 public class EditCourse extends AppCompatActivity implements View.OnClickListener {

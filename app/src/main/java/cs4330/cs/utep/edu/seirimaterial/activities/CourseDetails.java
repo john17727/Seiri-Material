@@ -1,4 +1,4 @@
-package cs4330.cs.utep.edu.seirimaterial;
+package cs4330.cs.utep.edu.seirimaterial.activities;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import cs4330.cs.utep.edu.seirimaterial.R;
+import cs4330.cs.utep.edu.seirimaterial.data.Course;
+import cs4330.cs.utep.edu.seirimaterial.models.CourseViewModel;
 
 public class CourseDetails extends AppCompatActivity {
 
@@ -31,7 +35,7 @@ public class CourseDetails extends AppCompatActivity {
     public static final String EXTRA_PROOM = "PROOM";
     public static final String EXTRA_COLOR = "COLOR";
 
-    private ViewModel viewModel;
+    private CourseViewModel courseViewModel;
 
     private TextView courseName;
     private TextView courseDays;
@@ -83,7 +87,7 @@ public class CourseDetails extends AppCompatActivity {
         profBuilding = findViewById(R.id.prof_building_detail);
         profRoom = findViewById(R.id.prof_room_detail);
 
-        viewModel = ViewModelProviders.of(this).get(ViewModel.class);
+        courseViewModel = ViewModelProviders.of(this).get(CourseViewModel.class);
 
         Intent intent = getIntent();
 
@@ -205,7 +209,7 @@ public class CourseDetails extends AppCompatActivity {
 
             Course course = new Course(courseNameS, courseBuildingS, courseRoomS, courseDaysS, timesArray[0], timesArray[1], profNameS, profEmailS, profBuildingS, profRoomS, profDaysS, timesArrayP[0], timesArrayP[1], color);
             course.setId(id);
-            viewModel.update(course);
+            courseViewModel.update(course);
         }
     }
 }

@@ -1,4 +1,4 @@
-package cs4330.cs.utep.edu.seirimaterial;
+package cs4330.cs.utep.edu.seirimaterial.models;
 
 import android.app.Application;
 import android.os.AsyncTask;
@@ -6,6 +6,9 @@ import android.os.AsyncTask;
 import androidx.lifecycle.LiveData;
 
 import java.util.List;
+
+import cs4330.cs.utep.edu.seirimaterial.data.Assignment;
+import cs4330.cs.utep.edu.seirimaterial.data.Course;
 
 public class Repository {
 
@@ -43,6 +46,8 @@ public class Repository {
         return allCourses;
     }
 
+
+
     public void insert(Assignment assignment) {
         new InsertAssignmentAsyncTask(assignmentDao).execute(assignment);
     }
@@ -62,6 +67,8 @@ public class Repository {
     public LiveData<List<Assignment>> getAllAssignments() {
         return allAssignments;
     }
+
+
 
 
     private static class InsertCourseAsyncTask extends AsyncTask<Course, Void, Void> {
@@ -123,6 +130,8 @@ public class Repository {
             return null;
         }
     }
+
+
 
 
     private static class InsertAssignmentAsyncTask extends AsyncTask<Assignment, Void, Void> {

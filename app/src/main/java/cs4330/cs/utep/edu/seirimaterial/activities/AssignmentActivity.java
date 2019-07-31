@@ -1,4 +1,4 @@
-package cs4330.cs.utep.edu.seirimaterial;
+package cs4330.cs.utep.edu.seirimaterial.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,11 +8,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import cs4330.cs.utep.edu.seirimaterial.utils.NavigationBottomSheet;
+import cs4330.cs.utep.edu.seirimaterial.R;
 
 public class AssignmentActivity extends AppCompatActivity {
 

@@ -12,20 +12,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EditCourse"
-            android:parentActivityName=".CourseDetails"
+        <activity android:name=".activities.EditCourse"
+            android:parentActivityName=".activities.CourseDetails"
             android:theme="@style/GetInfoTheme"/>
-        <activity android:name=".CourseDetails"
+        <activity android:name=".activities.CourseDetails"
             android:theme="@style/InfoDetailsTheme"
             android:launchMode="singleTop" />
-        <activity android:name=".AddAssignment" />
-        <activity android:name=".AssignmentActivity" />
+        <activity android:name=".activities.AddAssignment" />
+        <activity android:name=".activities.AssignmentActivity" />
         <activity
-            android:name=".AddCourse"
-            android:parentActivityName=".MainActivity"
+            android:name=".activities.AddCourse"
+            android:parentActivityName=".activities.CourseActivity"
             android:theme="@style/GetInfoTheme" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.CourseActivity"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

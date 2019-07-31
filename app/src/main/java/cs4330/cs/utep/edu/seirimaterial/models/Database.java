@@ -1,10 +1,12 @@
-package cs4330.cs.utep.edu.seirimaterial;
+package cs4330.cs.utep.edu.seirimaterial.models;
 
 import android.content.Context;
 
-import androidx.core.content.ContextCompat;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+
+import cs4330.cs.utep.edu.seirimaterial.data.Assignment;
+import cs4330.cs.utep.edu.seirimaterial.data.Course;
 
 @androidx.room.Database(entities = {Course.class, Assignment.class}, version = 1)
 public abstract class Database extends RoomDatabase {

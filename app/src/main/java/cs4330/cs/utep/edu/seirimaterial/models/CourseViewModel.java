@@ -1,4 +1,4 @@
-package cs4330.cs.utep.edu.seirimaterial;
+package cs4330.cs.utep.edu.seirimaterial.models;
 
 import android.app.Application;
 
@@ -8,12 +8,14 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-public class ViewModel extends AndroidViewModel {
+import cs4330.cs.utep.edu.seirimaterial.data.Course;
+
+public class CourseViewModel extends AndroidViewModel {
 
     private Repository repository;
     private LiveData<List<Course>> allCourses;
 
-    public ViewModel(@NonNull Application application) {
+    public CourseViewModel(@NonNull Application application) {
         super(application);
         repository = new Repository(application);
         allCourses = repository.getAllCourses();

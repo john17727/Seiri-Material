@@ -1,4 +1,4 @@
-package cs4330.cs.utep.edu.seirimaterial;
+package cs4330.cs.utep.edu.seirimaterial.data;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -16,14 +16,16 @@ public class Assignment {
     private String type;
     private String course;
     private String addInfo;
+    private int color;
 
-    public Assignment(String title, String dueDate, String dueTime, String type, String course, String addInfo) {
+    public Assignment(String title, String dueDate, String dueTime, String type, String course, String addInfo, int color) {
         this.title = title;
         this.dueDate = dueDate;
         this.dueTime = dueTime;
         this.type = type;
         this.course = course;
         this.addInfo = addInfo;
+        this.color = color;
     }
 
     public void setId(int id) {
@@ -56,5 +58,9 @@ public class Assignment {
 
     public String getAddInfo() {
         return addInfo;
+    }
+
+    public int getColor() {
+        return color;
     }
 }
