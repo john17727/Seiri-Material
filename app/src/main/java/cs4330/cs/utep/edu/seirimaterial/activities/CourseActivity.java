@@ -90,7 +90,7 @@ public class CourseActivity extends AppCompatActivity {
         }).attachToRecyclerView(recyclerView);
 
         //ADAPTER: set onClick Listener
-        adapter.setOnItemClickListener((course, position, title) -> {
+        adapter.setOnItemClickListener((course, position) -> {
 
             //Send all information over on an intent
             Intent courseDetails = new Intent(CourseActivity.this, CourseDetails.class);
@@ -125,11 +125,7 @@ public class CourseActivity extends AppCompatActivity {
             courseDetails.putExtra(CourseDetails.EXTRA_PROOM, course.getProfRoom());
             courseDetails.putExtra(CourseDetails.EXTRA_COLOR, course.getColor());
 
-            //Pair for transition animation
-            Pair pair = new Pair<View, String>(title, "name_transition");
-
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(CourseActivity.this, pair);
-            startActivity(courseDetails, options.toBundle());
+            startActivity(courseDetails);
         });
     }
 

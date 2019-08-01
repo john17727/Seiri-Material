@@ -6,6 +6,7 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TimePicker;
@@ -441,6 +442,7 @@ public class EditCourse extends AppCompatActivity implements View.OnClickListene
             time = startTime + "-" + endTime;
         }
         back.putExtra(CourseDetails.EXTRA_TIME, time);
+        Log.d("WTF", "t: " + time);
         back.putExtra(CourseDetails.EXTRA_BUILDING, building);
         back.putExtra(CourseDetails.EXTRA_ROOM, room);
 

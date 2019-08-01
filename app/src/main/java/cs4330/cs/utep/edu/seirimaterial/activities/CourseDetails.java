@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -197,15 +198,15 @@ public class CourseDetails extends AppCompatActivity {
                 timesArray = times.split("-");
             }
 
+
             times = data.getStringExtra(EXTRA_PTIME);
             String[] timesArrayP = new String[2];
             if(times.isEmpty()) {
-                timesArray[0] = "";
-                timesArray[1] = "";
+                timesArrayP[0] = "";
+                timesArrayP[1] = "";
             } else {
-                timesArray = times.split("-");
+                timesArrayP = times.split("-");
             }
-
 
             Course course = new Course(courseNameS, courseBuildingS, courseRoomS, courseDaysS, timesArray[0], timesArray[1], profNameS, profEmailS, profBuildingS, profRoomS, profDaysS, timesArrayP[0], timesArrayP[1], color);
             course.setId(id);
