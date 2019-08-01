@@ -380,14 +380,13 @@ public class AddCourse extends AppCompatActivity implements View.OnClickListener
                 // put code
             }
         })
-                .addListenerButton("Select", new ColorPicker.OnButtonListener() {
-                    @Override
-                    public void onClick(View v, int position, int color) {
-                        cardColor = color;
+                .addListenerButton("Select", (v, position, color) -> {
+                    cardColor = color;
+                    if(color != 0) {
                         selectColorButton.setTextColor(Color.parseColor("#fafafa"));
                         selectColorButton.setBackgroundColor(color);
-                        colorPicker.dismissDialog();
                     }
+                    colorPicker.dismissDialog();
                 }).setColors(R.array.colorSelections)
                 .setDefaultColorButton(Color.parseColor("#212121"))
                 .disableDefaultButtons(true)
