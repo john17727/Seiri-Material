@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.TimePicker;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -16,6 +15,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
+import java.util.Objects;
 
 import cs4330.cs.utep.edu.seirimaterial.R;
 import cs4330.cs.utep.edu.seirimaterial.data.Course;
@@ -64,13 +65,11 @@ public class AddCourse extends AppCompatActivity implements View.OnClickListener
 
     private CheckBox profSun, profMon, profTue, profWed, profThu, profFri, profSat;
 
-    private MaterialButton addCourseButton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_course);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         setDayArrays();
 
@@ -128,68 +127,54 @@ public class AddCourse extends AppCompatActivity implements View.OnClickListener
         editTextProfEnd = findViewById(R.id.edit_text_prof_end);
         editTextProfEnd.setKeyListener(null);
 
-        addCourseButton = findViewById(R.id.add_course_button);
-
         courseViewModel = ViewModelProviders.of(this).get(CourseViewModel.class);
 
-        startTimePicker = new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                calendar.set(Calendar.MINUTE, minute);
+        startTimePicker = (view, hourOfDay, minute) -> {
+            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+            calendar.set(Calendar.MINUTE, minute);
 
-                SimpleDateFormat timeFormat = new SimpleDateFormat(TIME_FORMAT);
+            SimpleDateFormat timeFormat = new SimpleDateFormat(TIME_FORMAT, Locale.US);
 
-                startTime = calendar.getTime();
+            startTime = calendar.getTime();
 
-                courseStartTime = timeFormat.format(startTime);
-                editTextStart.setText(courseStartTime);
-            }
+            courseStartTime = timeFormat.format(startTime);
+            editTextStart.setText(courseStartTime);
         };
 
-        endTimePicker = new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                calendar.set(Calendar.MINUTE, minute);
+        endTimePicker = (view, hourOfDay, minute) -> {
+            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+            calendar.set(Calendar.MINUTE, minute);
 
-                SimpleDateFormat timeFormat = new SimpleDateFormat(TIME_FORMAT);
+            SimpleDateFormat timeFormat = new SimpleDateFormat(TIME_FORMAT, Locale.US);
 
-                endTime = calendar.getTime();
+            endTime = calendar.getTime();
 
-                courseEndTime = timeFormat.format(endTime);
-                editTextEnd.setText(courseEndTime);
-            }
+            courseEndTime = timeFormat.format(endTime);
+            editTextEnd.setText(courseEndTime);
         };
 
-        profStartTimePicker = new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                calendar.set(Calendar.MINUTE, minute);
+        profStartTimePicker = (view, hourOfDay, minute) -> {
+            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+            calendar.set(Calendar.MINUTE, minute);
 
-                SimpleDateFormat timeFormat = new SimpleDateFormat(TIME_FORMAT);
+            SimpleDateFormat timeFormat = new SimpleDateFormat(TIME_FORMAT, Locale.US);
 
-                startTime = calendar.getTime();
+            startTime = calendar.getTime();
 
-                profStartTime = timeFormat.format(startTime);
-                editTextProfStart.setText(profStartTime);
-            }
+            profStartTime = timeFormat.format(startTime);
+            editTextProfStart.setText(profStartTime);
         };
 
-        profEndTimePicker = new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                calendar.set(Calendar.MINUTE, minute);
+        profEndTimePicker = (view, hourOfDay, minute) -> {
+            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+            calendar.set(Calendar.MINUTE, minute);
 
-                SimpleDateFormat timeFormat = new SimpleDateFormat(TIME_FORMAT);
+            SimpleDateFormat timeFormat = new SimpleDateFormat(TIME_FORMAT, Locale.US);
 
-                endTime = calendar.getTime();
+            endTime = calendar.getTime();
 
-                profEndTime = timeFormat.format(endTime);
-                editTextProfEnd.setText(profEndTime);
-            }
+            profEndTime = timeFormat.format(endTime);
+            editTextProfEnd.setText(profEndTime);
         };
     }
 
@@ -299,26 +284,26 @@ public class AddCourse extends AppCompatActivity implements View.OnClickListener
     }
 
     public void addCourseClick(View view) {
-        String name = editTextName.getText().toString();
-        String building = editTextBuilding.getText().toString();
-        String room = editTextRoom.getText().toString();
+        String name = Objects.requireNonNull(editTextName.getText()).toString();
+        String building = Objects.requireNonNull(editTextBuilding.getText()).toString();
+        String room = Objects.requireNonNull(editTextRoom.getText()).toString();
         String days = getChosenDays(courseDays);
-        String profName = editTextProfName.getText().toString();
-        String profEmail = editTextProfEmail.getText().toString();
-        String profBuilding = editTextProfBuilding.getText().toString();
-        String profRoom =  editTextProfRoom.getText().toString();
+        String profName = Objects.requireNonNull(editTextProfName.getText()).toString();
+        String profEmail = Objects.requireNonNull(editTextProfEmail.getText()).toString();
+        String profBuilding = Objects.requireNonNull(editTextProfBuilding.getText()).toString();
+        String profRoom =  Objects.requireNonNull(editTextProfRoom.getText()).toString();
         String daysProf = getChosenDays(profDays);
 
-        if(editTextStart.getText().toString().isEmpty()) {
+        if(Objects.requireNonNull(editTextStart.getText()).toString().isEmpty()) {
             courseStartTime = "";
         }
-        if(editTextEnd.getText().toString().isEmpty()) {
+        if(Objects.requireNonNull(editTextEnd.getText()).toString().isEmpty()) {
             courseEndTime = "";
         }
-        if(editTextProfStart.getText().toString().isEmpty()) {
+        if(Objects.requireNonNull(editTextProfStart.getText()).toString().isEmpty()) {
             profStartTime = "";
         }
-        if(editTextProfEnd.getText().toString().isEmpty()) {
+        if(Objects.requireNonNull(editTextProfEnd.getText()).toString().isEmpty()) {
             profEndTime = "";
         }
 

@@ -66,20 +66,17 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseHold
         private TextView textViewTime;
         private MaterialCardView card;
 
-        public CourseHolder(@NonNull View itemView) {
+        CourseHolder(@NonNull View itemView) {
             super(itemView);
             textViewName = itemView.findViewById(R.id.text_view_name);
             textViewDays = itemView.findViewById(R.id.text_view_days);
             textViewTime = itemView.findViewById(R.id.text_view_time);
             card = itemView.findViewById(R.id.card_view_courses);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    if (listener != null && position != RecyclerView.NO_POSITION) {
-                        listener.onItemClick(courses.get(position), position);
-                    }
+            itemView.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                if (listener != null && position != RecyclerView.NO_POSITION) {
+                    listener.onItemClick(courses.get(position), position);
                 }
             });
         }

@@ -12,19 +12,17 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.List;
 
 import cs4330.cs.utep.edu.seirimaterial.data.Course;
 import cs4330.cs.utep.edu.seirimaterial.adapters.CourseAdapter;
@@ -40,6 +38,8 @@ public class CourseActivity extends AppCompatActivity {
     BottomAppBar bottomAppBar;
     NavigationBottomSheet bottomSheetFragment;
     FloatingActionButton fab;
+
+    List<String> allCourses;
 
 
     @Override
@@ -145,10 +145,5 @@ public class CourseActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(menuItem);
         }
-    }
-
-    public void toast(String msg) {
-        Toast toast = Toast.makeText(this, msg, Toast.LENGTH_LONG);
-        toast.show();
     }
 }

@@ -1,9 +1,11 @@
 package cs4330.cs.utep.edu.seirimaterial.activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 
@@ -103,15 +105,18 @@ public class AddAssignment extends AppCompatActivity {
     }
 
     public void typeClick(View view) {
+        final String[] types = getResources().getStringArray(R.array.assignment_types);
+
         new MaterialAlertDialogBuilder(view.getContext())
                 .setTitle("Type")
-                .setMessage("Message")
-                .setPositiveButton("Ok", null)
+                .setItems(types, (dialog, which) -> editTextType.setText(types[which]))
                 .show();
     }
 
     public void courseClick(View view) {
-
+        new MaterialAlertDialogBuilder(view.getContext())
+                .setTitle("Course")
+                .show();
     }
 
 }

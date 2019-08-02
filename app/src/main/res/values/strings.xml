@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">Seiri Material</string>
     <string name="undo">Undo</string>
+
+    <string-array name="assignment_types">
+        <item>None</item>
+        <item>Assignment</item>
+        <item>Project</item>
+        <item>Reading</item>
+        <item>Paper</item>
+        <item>Test</item>
+        <item>Quiz</item>
+        <item>Midterm</item>
+        <item>Final</item>
+    </string-array>
+
 </resources>

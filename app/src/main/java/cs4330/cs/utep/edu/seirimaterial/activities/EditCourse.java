@@ -516,16 +516,13 @@ public class EditCourse extends AppCompatActivity implements View.OnClickListene
                 // put code
             }
         })
-                .addListenerButton("Select", new ColorPicker.OnButtonListener() {
-                    @Override
-                    public void onClick(View v, int position, int color) {
-                        cardColor = color;
-                        if(color != 0) {
-                            selectColorButton.setTextColor(Color.parseColor("#fafafa"));
-                            selectColorButton.setBackgroundColor(color);
-                        }
-                        colorPicker.dismissDialog();
+                .addListenerButton("Select", (v, position, color) -> {
+                    cardColor = color;
+                    if(color != 0) {
+                        selectColorButton.setTextColor(Color.parseColor("#fafafa"));
+                        selectColorButton.setBackgroundColor(color);
                     }
+                    colorPicker.dismissDialog();
                 }).setColors(R.array.colorSelections)
                 .setDefaultColorButton(Color.parseColor("#212121"))
                 .disableDefaultButtons(true)

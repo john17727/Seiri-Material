@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,27 +34,16 @@ public class NavigationBottomSheet extends BottomSheetDialogFragment {
         coursesMenu = view.findViewById(R.id.courses);
         assignmentMenu = view.findViewById(R.id.assignments);
 
-        coursesMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent toCourseActivity = new Intent(v.getContext(), CourseActivity.class);
-                startActivity(toCourseActivity);
-                getActivity().finish();
-            }
+        coursesMenu.setOnClickListener(v -> {
+            Intent toCourseActivity = new Intent(v.getContext(), CourseActivity.class);
+            startActivity(toCourseActivity);
+            getActivity().finish();
         });
 
-        assignmentMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent toAssignmentActivity = new Intent(v.getContext(), AssignmentActivity.class);
-                startActivity(toAssignmentActivity);
-                getActivity().finish();
-            }
+        assignmentMenu.setOnClickListener(v -> {
+            Intent toAssignmentActivity = new Intent(v.getContext(), AssignmentActivity.class);
+            startActivity(toAssignmentActivity);
+            getActivity().finish();
         });
-    }
-
-    public void toast(String msg) {
-        Toast toast = Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG);
-        toast.show();
     }
 }
