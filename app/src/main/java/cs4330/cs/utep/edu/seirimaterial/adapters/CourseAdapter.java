@@ -41,7 +41,8 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseHold
         if (startTime.isEmpty() && endTime.isEmpty()) {
             holder.textViewTime.setText("");
         } else {
-            holder.textViewTime.setText(startTime + "-" + endTime);
+            String fullTime = startTime + "-" + endTime;
+            holder.textViewTime.setText(fullTime);
         }
     }
 

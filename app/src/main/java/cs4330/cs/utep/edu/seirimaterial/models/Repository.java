@@ -18,7 +18,7 @@ public class Repository {
     private AssignmentDao assignmentDao;
     private LiveData<List<Assignment>> allAssignments;
 
-    public Repository(Application application) {
+    Repository(Application application) {
         Database database = Database.getInstance(application);
         courseDao = database.courseDao();
         allCourses = courseDao.getAllCourses();
@@ -30,7 +30,7 @@ public class Repository {
         new InsertCourseAsyncTask(courseDao).execute(course);
     }
 
-    public void update(Course course) {
+    void update(Course course) {
         new UpdateCourseAsyncTask(courseDao).execute(course);
     }
 
@@ -38,11 +38,11 @@ public class Repository {
         new DeleteCourseAsyncTask(courseDao).execute(course);
     }
 
-    public void deleteAllCourses() {
+    void deleteAllCourses() {
         new DeleteAllCoursesAsyncTask(courseDao).execute();
     }
 
-    public LiveData<List<Course>> getAllCourses() {
+    LiveData<List<Course>> getAllCourses() {
         return allCourses;
     }
 
@@ -52,7 +52,7 @@ public class Repository {
         new InsertAssignmentAsyncTask(assignmentDao).execute(assignment);
     }
 
-    public void update(Assignment assignment) {
+    void update(Assignment assignment) {
         new UpdateAssignmentAsyncTask(assignmentDao).execute(assignment);
     }
 
@@ -60,11 +60,11 @@ public class Repository {
         new DeleteAssignmentAsyncTask(assignmentDao).execute(assignment);
     }
 
-    public void deleteAllAssignments() {
+    void deleteAllAssignments() {
         new DeleteAllAssignmentsAsyncTask(assignmentDao).execute();
     }
 
-    public LiveData<List<Assignment>> getAllAssignments() {
+    LiveData<List<Assignment>> getAllAssignments() {
         return allAssignments;
     }
 

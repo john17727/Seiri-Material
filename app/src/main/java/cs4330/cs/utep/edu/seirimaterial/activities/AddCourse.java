@@ -313,14 +313,14 @@ public class AddCourse extends AppCompatActivity implements View.OnClickListener
     }
 
     public String getChosenDays(String[] chosenDays) {
-        String allDays = "";
+        StringBuilder allDays = new StringBuilder();
         for(String day : chosenDays) {
             if(!day.isEmpty()) {
-                allDays += day + ", ";
+                allDays.append(day).append(", ");
             }
         }
 
-        if(allDays.isEmpty()) {
+        if(allDays.length() == 0) {
             return "";
         }
         return allDays.substring(0, allDays.length() - 2);

@@ -16,7 +16,7 @@ public abstract class Database extends RoomDatabase {
     public abstract CourseDao courseDao();
     public abstract AssignmentDao assignmentDao();
 
-    public static synchronized Database getInstance(Context context) {
+    static synchronized Database getInstance(Context context) {
         if(instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(), Database.class, "database").fallbackToDestructiveMigration().build();
         }

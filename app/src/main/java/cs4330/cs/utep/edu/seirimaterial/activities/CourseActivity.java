@@ -22,8 +22,6 @@ import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.util.List;
-
 import cs4330.cs.utep.edu.seirimaterial.data.Course;
 import cs4330.cs.utep.edu.seirimaterial.adapters.CourseAdapter;
 import cs4330.cs.utep.edu.seirimaterial.models.CourseViewModel;
@@ -38,8 +36,6 @@ public class CourseActivity extends AppCompatActivity {
     BottomAppBar bottomAppBar;
     NavigationBottomSheet bottomSheetFragment;
     FloatingActionButton fab;
-
-    List<String> allCourses;
 
 
     @Override
@@ -138,12 +134,9 @@ public class CourseActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
-        switch (menuItem.getItemId()) {
-            case R.id.delete_all_courses:
-                courseViewModel.deleteAllCourses();
-                return true;
-            default:
-                return super.onOptionsItemSelected(menuItem);
+        if (menuItem.getItemId() == R.id.delete_all_courses) {
+            courseViewModel.deleteAllCourses();
         }
+        return super.onOptionsItemSelected(menuItem);
     }
 }

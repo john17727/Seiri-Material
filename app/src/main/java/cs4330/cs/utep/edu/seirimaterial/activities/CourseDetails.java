@@ -7,12 +7,12 @@ import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import java.util.Objects;
 
 import cs4330.cs.utep.edu.seirimaterial.R;
 import cs4330.cs.utep.edu.seirimaterial.data.Course;
@@ -72,7 +72,7 @@ public class CourseDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_details);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
 
         courseName = findViewById(R.id.name_detail);
@@ -173,18 +173,13 @@ public class CourseDetails extends AppCompatActivity {
         startActivityForResult(editCourse, REQUEST_CODE);
     }
 
-    public void toast(String msg) {
-        Toast toast = Toast.makeText(this, msg, Toast.LENGTH_LONG);
-        toast.show();
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
-            color = data.getIntExtra(EXTRA_COLOR, -1);
+            color = Objects.requireNonNull(data).getIntExtra(EXTRA_COLOR, -1);
             getWindow().setStatusBarColor(color);
-            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color));
+            Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(color));
             courseName.setBackgroundColor(color);
 
             setTexts(data);
