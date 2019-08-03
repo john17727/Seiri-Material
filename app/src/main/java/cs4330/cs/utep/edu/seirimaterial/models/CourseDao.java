@@ -28,4 +28,7 @@ public interface CourseDao {
 
     @Query("SELECT * FROM course_table ORDER BY name ASC")
     LiveData<List<Course>> getAllCourses();
+
+    @Query("SELECT * FROM course_table ORDER BY name ASC")
+    List<Course> getAllCourseNames();
 }

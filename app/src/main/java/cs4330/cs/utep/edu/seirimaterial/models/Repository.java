@@ -14,6 +14,7 @@ public class Repository {
 
     private CourseDao courseDao;
     private LiveData<List<Course>> allCourses;
+    private List<Course> allCourseNames;
 
     private AssignmentDao assignmentDao;
     private LiveData<List<Assignment>> allAssignments;
@@ -22,6 +23,7 @@ public class Repository {
         Database database = Database.getInstance(application);
         courseDao = database.courseDao();
         allCourses = courseDao.getAllCourses();
+        allCourseNames = courseDao.getAllCourseNames();
         assignmentDao = database.assignmentDao();
         allAssignments = assignmentDao.getAllAssignments();
     }
@@ -44,6 +46,10 @@ public class Repository {
 
     LiveData<List<Course>> getAllCourses() {
         return allCourses;
+    }
+
+    List<Course> getAllCourseNames() {
+        return allCourseNames;
     }
 
 
