@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
@@ -29,7 +28,7 @@ public class AssignmentActivity extends AppCompatActivity {
 
     public static final String COURSE_NAMES = "names";
 
-    AssignmentViewModel assignmentViewModel;
+    private AssignmentViewModel assignmentViewModel;
     private CourseViewModel courseViewModel;
 
     private List<String> courseNames;
@@ -47,6 +46,16 @@ public class AssignmentActivity extends AppCompatActivity {
         setSupportActionBar(bottomAppBar);
 
         fab = findViewById(R.id.fab);
+        fab.setOnClickListener(v -> {
+            Intent addAssignment = new Intent(v.getContext(), AddAssignment.class);
+            addAssignment.putStringArrayListExtra(COURSE_NAMES, (ArrayList<String>) courseNames);
+            startActivity(addAssignment);
+        });
+
+        bottomAppBar.setNavigationOnClickListener(v -> {
+            bottomSheetFragment = new NavigationBottomSheet();
+            bottomSheetFragment.show(getSupportFragmentManager(), bottomSheetFragment.getTag());
+        });
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view_assignments);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -58,20 +67,8 @@ public class AssignmentActivity extends AppCompatActivity {
 
         assignmentViewModel = ViewModelProviders.of(this).get(AssignmentViewModel.class);
         assignmentViewModel.getAllAssignments().observe(this, adapter::setAssignments);
-
         courseViewModel = ViewModelProviders.of(this).get(CourseViewModel.class);
         courseNames = courseViewModel.getAllCourseNames();
-
-        bottomAppBar.setNavigationOnClickListener(v -> {
-            bottomSheetFragment = new NavigationBottomSheet();
-            bottomSheetFragment.show(getSupportFragmentManager(), bottomSheetFragment.getTag());
-        });
-
-        fab.setOnClickListener(v -> {
-            Intent addAssignment = new Intent(v.getContext(), AddAssignment.class);
-            addAssignment.putStringArrayListExtra(COURSE_NAMES, (ArrayList<String>) courseNames);
-            startActivity(addAssignment);
-        });
     }
 
     @Override

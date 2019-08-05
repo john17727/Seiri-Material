@@ -104,6 +104,13 @@ public class AddAssignment extends AppCompatActivity {
         String course = Objects.requireNonNull(editTextCourse.getText()).toString();
         String extraInfo = Objects.requireNonNull(editTextAddiInfo.getText()).toString();
 
+        if(Objects.requireNonNull(editTextDueDate.getText()).toString().isEmpty()) {
+            assignmentDate = 0;
+        }
+        if(Objects.requireNonNull(editTextDueTime.getText()).toString().isEmpty()) {
+            assignmentTime = 0;
+        }
+
         Assignment assignment = new Assignment(title, assignmentDate, assignmentTime, type, course, extraInfo, 0);
         assignmentViewModel.insert(assignment);
         finish();

@@ -24,7 +24,7 @@ public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.As
     private static final String TIME_FORMAT = "h:mm aa";
 
     private List<Assignment> assignments = new ArrayList<>();
-    private AssignmentAdapter.OnItemClickListener listener;
+    private OnItemClickListener listener;
 
     @NonNull
     @Override
@@ -40,15 +40,21 @@ public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.As
         //holder.card.setCardBackgroundColor(currentAssignment.getColor());
         holder.textViewTitle.setText(currentAssignment.getTitle());
 
-        Date date = new Date(currentAssignment.getDueDate());
-        Date time = new Date(currentAssignment.getDueTime());
+        if(currentAssignment.getDueDate() == 0) {
+            holder.textViewDate.setText("");
+        } else {
+            Date date = new Date(currentAssignment.getDueDate());
+            SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+            holder.textViewDate.setText(dateFormat.format(date));
+        }
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
-        SimpleDateFormat timeFormat = new SimpleDateFormat(TIME_FORMAT);
-
-        holder.textViewDate.setText(dateFormat.format(date));
-        holder.textViewTime.setText(timeFormat.format(time));
-
+        if(currentAssignment.getDueTime() == 0) {
+            holder.textViewTime.setText("");
+        } else {
+            Date time = new Date(currentAssignment.getDueTime());
+            SimpleDateFormat timeFormat = new SimpleDateFormat(TIME_FORMAT);
+            holder.textViewTime.setText(timeFormat.format(time));
+        }
     }
 
     @Override
@@ -74,23 +80,20 @@ public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.As
             textViewTime = itemView.findViewById(R.id.text_view_time);
             card = itemView.findViewById(R.id.card_view_assignments);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    if (listener != null && position != RecyclerView.NO_POSITION) {
-                        listener.onItemClick(assignments.get(position), position, textViewTitle);
-                    }
+            itemView.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                if (listener != null && position != RecyclerView.NO_POSITION) {
+                    listener.onItemClick(assignments.get(position), position);
                 }
             });
         }
     }
 
     public interface OnItemClickListener {
-        void onItemClick(Assignment assignment, int position, TextView title);
+        void onItemClick(Assignment assignment, int position);
     }
 
-    public void setOnItemClickListener(AssignmentAdapter.OnItemClickListener listener) {
+    public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 }

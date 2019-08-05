@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "assignment_table")
 public class Assignment {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int id;
 
     private String title;
