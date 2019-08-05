@@ -5,7 +5,9 @@ import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import cs4330.cs.utep.edu.seirimaterial.data.Assignment;
 import cs4330.cs.utep.edu.seirimaterial.data.Course;
@@ -14,7 +16,7 @@ public class Repository {
 
     private CourseDao courseDao;
     private LiveData<List<Course>> allCourses;
-    private List<Course> allCourseNames;
+    private List<String> allCourseNames;
 
     private AssignmentDao assignmentDao;
     private LiveData<List<Assignment>> allAssignments;
@@ -23,7 +25,6 @@ public class Repository {
         Database database = Database.getInstance(application);
         courseDao = database.courseDao();
         allCourses = courseDao.getAllCourses();
-        allCourseNames = courseDao.getAllCourseNames();
         assignmentDao = database.assignmentDao();
         allAssignments = assignmentDao.getAllAssignments();
     }
@@ -48,8 +49,8 @@ public class Repository {
         return allCourses;
     }
 
-    List<Course> getAllCourseNames() {
-        return allCourseNames;
+    List<String> getAllCourseNames() throws ExecutionException, InterruptedException {
+        return new getAllCourseNamesAsyncTask(courseDao).execute().get();
     }
 
 
@@ -134,6 +135,20 @@ public class Repository {
         protected Void doInBackground(Void... voids) {
             courseDao.deleteAllCourses();
             return null;
+        }
+    }
+
+    private static class getAllCourseNamesAsyncTask extends AsyncTask<Void, Void, List<String>> {
+
+        private CourseDao courseDao;
+
+        private getAllCourseNamesAsyncTask(CourseDao courseDao) {
+            this.courseDao = courseDao;
+        }
+
+        @Override
+        protected List<String> doInBackground(Void... voids) {
+            return courseDao.getAllCourseNames();
         }
     }
 

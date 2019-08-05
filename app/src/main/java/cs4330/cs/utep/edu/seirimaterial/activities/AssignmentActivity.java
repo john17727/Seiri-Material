@@ -1,6 +1,7 @@
 package cs4330.cs.utep.edu.seirimaterial.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,10 +14,17 @@ import android.widget.Toast;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.List;
+
+import cs4330.cs.utep.edu.seirimaterial.models.CourseViewModel;
 import cs4330.cs.utep.edu.seirimaterial.utils.NavigationBottomSheet;
 import cs4330.cs.utep.edu.seirimaterial.R;
 
 public class AssignmentActivity extends AppCompatActivity {
+
+    private CourseViewModel courseViewModel;
+
+    private List<String> courseNames;
 
     BottomAppBar bottomAppBar;
     NavigationBottomSheet bottomSheetFragment;
@@ -32,20 +40,18 @@ public class AssignmentActivity extends AppCompatActivity {
 
         fab = findViewById(R.id.fab);
 
-        bottomAppBar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bottomSheetFragment = new NavigationBottomSheet();
-                bottomSheetFragment.show(getSupportFragmentManager(), bottomSheetFragment.getTag());
-            }
+
+        courseViewModel = ViewModelProviders.of(this).get(CourseViewModel.class);
+        courseNames = courseViewModel.getAllCourseNames();
+
+        bottomAppBar.setNavigationOnClickListener(v -> {
+            bottomSheetFragment = new NavigationBottomSheet();
+            bottomSheetFragment.show(getSupportFragmentManager(), bottomSheetFragment.getTag());
         });
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent addAssignment = new Intent(v.getContext(), AddAssignment.class);
-                startActivity(addAssignment);
-            }
+        fab.setOnClickListener(v -> {
+            Intent addAssignment = new Intent(v.getContext(), AddAssignment.class);
+            startActivity(addAssignment);
         });
     }
 

@@ -6,8 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import cs4330.cs.utep.edu.seirimaterial.data.Course;
 
@@ -15,9 +15,9 @@ public class CourseViewModel extends AndroidViewModel {
 
     private Repository repository;
     private LiveData<List<Course>> allCourses;
-    private List<Course> courses;
+    private List<String> courses;
 
-    public CourseViewModel(@NonNull Application application) {
+    public CourseViewModel(@NonNull Application application) throws ExecutionException, InterruptedException {
         super(application);
         repository = new Repository(application);
         allCourses = repository.getAllCourses();
@@ -45,12 +45,6 @@ public class CourseViewModel extends AndroidViewModel {
     }
 
     public List<String> getAllCourseNames() {
-        List<String> allCourseNames = new ArrayList<>();
-
-        for(Course course:courses) {
-            allCourseNames.add(course.getName());
-        }
-
-        return allCourseNames;
+        return courses;
     }
 }
