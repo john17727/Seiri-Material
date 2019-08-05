@@ -2,6 +2,8 @@ package cs4330.cs.utep.edu.seirimaterial.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,14 +16,20 @@ import android.widget.Toast;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import cs4330.cs.utep.edu.seirimaterial.adapters.AssignmentAdapter;
+import cs4330.cs.utep.edu.seirimaterial.models.AssignmentViewModel;
 import cs4330.cs.utep.edu.seirimaterial.models.CourseViewModel;
 import cs4330.cs.utep.edu.seirimaterial.utils.NavigationBottomSheet;
 import cs4330.cs.utep.edu.seirimaterial.R;
 
 public class AssignmentActivity extends AppCompatActivity {
 
+    public static final String COURSE_NAMES = "names";
+
+    AssignmentViewModel assignmentViewModel;
     private CourseViewModel courseViewModel;
 
     private List<String> courseNames;
@@ -40,6 +48,16 @@ public class AssignmentActivity extends AppCompatActivity {
 
         fab = findViewById(R.id.fab);
 
+        RecyclerView recyclerView = findViewById(R.id.recycler_view_assignments);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
+
+        final AssignmentAdapter adapter;
+        adapter = new AssignmentAdapter();
+        recyclerView.setAdapter(adapter);
+
+        assignmentViewModel = ViewModelProviders.of(this).get(AssignmentViewModel.class);
+        assignmentViewModel.getAllAssignments().observe(this, adapter::setAssignments);
 
         courseViewModel = ViewModelProviders.of(this).get(CourseViewModel.class);
         courseNames = courseViewModel.getAllCourseNames();
@@ -51,6 +69,7 @@ public class AssignmentActivity extends AppCompatActivity {
 
         fab.setOnClickListener(v -> {
             Intent addAssignment = new Intent(v.getContext(), AddAssignment.class);
+            addAssignment.putStringArrayListExtra(COURSE_NAMES, (ArrayList<String>) courseNames);
             startActivity(addAssignment);
         });
     }

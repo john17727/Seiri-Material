@@ -10,13 +10,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.card.MaterialCardView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import cs4330.cs.utep.edu.seirimaterial.data.Assignment;
 import cs4330.cs.utep.edu.seirimaterial.R;
 
 public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.AssignmentHolder> {
+
+    private static final String DATE_FORMAT = "MM/dd/yy";
+    private static final String TIME_FORMAT = "h:mm aa";
 
     private List<Assignment> assignments = new ArrayList<>();
     private AssignmentAdapter.OnItemClickListener listener;
@@ -32,10 +37,17 @@ public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.As
     public void onBindViewHolder(@NonNull AssignmentHolder holder, int position) {
         Assignment currentAssignment = assignments.get(position);
 
-        holder.card.setCardBackgroundColor(currentAssignment.getColor());
+        //holder.card.setCardBackgroundColor(currentAssignment.getColor());
         holder.textViewTitle.setText(currentAssignment.getTitle());
-        holder.textViewDate.setText(currentAssignment.getDueDate());
-        holder.textViewTime.setText(currentAssignment.getDueTime());
+
+        Date date = new Date(currentAssignment.getDueDate());
+        Date time = new Date(currentAssignment.getDueTime());
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+        SimpleDateFormat timeFormat = new SimpleDateFormat(TIME_FORMAT);
+
+        holder.textViewDate.setText(dateFormat.format(date));
+        holder.textViewTime.setText(timeFormat.format(time));
 
     }
 

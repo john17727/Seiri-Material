@@ -21,8 +21,8 @@ public class AssignmentViewModel extends AndroidViewModel {
         allAssignments = repository.getAllAssignments();
     }
 
-    public void insert() {
-        //repository.insert(assignment);
+    public void insert(Assignment assignment) {
+        repository.insert(assignment);
     }
 
     public void update(Assignment assignment) {

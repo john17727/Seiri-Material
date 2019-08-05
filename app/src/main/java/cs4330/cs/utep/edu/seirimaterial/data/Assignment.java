@@ -11,14 +11,14 @@ public class Assignment {
     private int id;
 
     private String title;
-    private String dueDate;
-    private String dueTime;
+    private long dueDate;
+    private long dueTime;
     private String type;
     private String course;
     private String addInfo;
     private int color;
 
-    public Assignment(String title, String dueDate, String dueTime, String type, String course, String addInfo, int color) {
+    public Assignment(String title, long dueDate, long dueTime, String type, String course, String addInfo, int color) {
         this.title = title;
         this.dueDate = dueDate;
         this.dueTime = dueTime;
@@ -40,11 +40,11 @@ public class Assignment {
         return title;
     }
 
-    public String getDueDate() {
+    public long getDueDate() {
         return dueDate;
     }
 
-    public String getDueTime() {
+    public long getDueTime() {
         return dueTime;
     }
 

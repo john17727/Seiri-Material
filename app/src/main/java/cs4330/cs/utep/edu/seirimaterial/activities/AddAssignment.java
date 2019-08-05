@@ -1,38 +1,43 @@
 package cs4330.cs.utep.edu.seirimaterial.activities;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.google.android.material.button.MaterialButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
 
 import cs4330.cs.utep.edu.seirimaterial.R;
+import cs4330.cs.utep.edu.seirimaterial.data.Assignment;
 import cs4330.cs.utep.edu.seirimaterial.models.AssignmentViewModel;
 
 public class AddAssignment extends AppCompatActivity {
 
 
     private static final String DATE_FORMAT = "MM/dd/yy";
-    public static final String TIME_FORMAT = "h:mm aa";
+    private static final String TIME_FORMAT = "h:mm aa";
 
     private AssignmentViewModel assignmentViewModel;
+
+    private List<String> courseNames;
 
     private Calendar calendar;
     private TimePickerDialog.OnTimeSetListener timePicker;
     private DatePickerDialog.OnDateSetListener datePicker;
     private Date time;
-    private String assignmentTime;
+    private long assignmentTime;
     private Date date;
     private long assignmentDate;
 
@@ -42,8 +47,6 @@ public class AddAssignment extends AppCompatActivity {
     private TextInputEditText editTextType;
     private TextInputEditText editTextCourse;
     private TextInputEditText editTextAddiInfo;
-
-    private MaterialButton addAssignmentButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,14 +67,17 @@ public class AddAssignment extends AppCompatActivity {
         editTextCourse.setKeyListener(null);
         editTextAddiInfo = findViewById(R.id.edit_text_addi_info);
 
-        addAssignmentButton = findViewById(R.id.add_assignment_button);
+        Intent intent = getIntent();
+        courseNames = intent.getStringArrayListExtra(AssignmentActivity.COURSE_NAMES);
+
+        assignmentViewModel = ViewModelProviders.of(this).get(AssignmentViewModel.class);
 
         datePicker = (view, year, month, dayOfMonth) -> {
             calendar.set(Calendar.YEAR, year);
             calendar.set(Calendar.MONTH, month);
             calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
-            SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+            SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.US);
 
             date = calendar.getTime();
             assignmentDate = date.getTime();
@@ -84,16 +90,24 @@ public class AddAssignment extends AppCompatActivity {
             calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
             calendar.set(Calendar.MINUTE, minute);
 
-            SimpleDateFormat timeFormat = new SimpleDateFormat(TIME_FORMAT);
+            SimpleDateFormat timeFormat = new SimpleDateFormat(TIME_FORMAT, Locale.US);
 
             time = calendar.getTime();
-            assignmentTime = timeFormat.format(time);
-            editTextDueTime.setText(assignmentTime);
+            assignmentTime = time.getTime();
+            editTextDueTime.setText(timeFormat.format(time));
         };
     }
 
     public void addAssignmentClick(View view) {
-        String title = editTextTitle.getText().toString();
+        String title = Objects.requireNonNull(editTextTitle.getText()).toString();
+        String type = Objects.requireNonNull(editTextType.getText()).toString();
+        String course = Objects.requireNonNull(editTextCourse.getText()).toString();
+        String extraInfo = Objects.requireNonNull(editTextAddiInfo.getText()).toString();
+
+        Assignment assignment = new Assignment(title, assignmentDate, assignmentTime, type, course, extraInfo, 0);
+        assignmentViewModel.insert(assignment);
+        finish();
+
     }
 
     public void dateClick(View view) {
@@ -114,8 +128,12 @@ public class AddAssignment extends AppCompatActivity {
     }
 
     public void courseClick(View view) {
+        String[] names = new String[courseNames.size() + 1];
+        courseNames.add(0, "None");
+        courseNames.toArray(names);
         new MaterialAlertDialogBuilder(view.getContext())
                 .setTitle("Course")
+                .setItems(names, ((dialog, which) -> editTextCourse.setText(names[which])))
                 .show();
     }
 
