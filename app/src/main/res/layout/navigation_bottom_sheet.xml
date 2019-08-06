@@ -14,17 +14,19 @@
         android:foreground="?attr/selectableItemBackground"
         android:orientation="horizontal"
         android:paddingBottom="12dp"
-        android:paddingRight="8dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="8dp"
         android:paddingTop="12dp"
-        android:layout_gravity="left"
+        android:layout_gravity="start"
         android:gravity="center">
 
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
             android:src="@drawable/outline_class"
-            android:tint="@color/colorOnBackground" />
+            android:tint="@color/colorOnBackground"
+            android:contentDescription="@string/courses" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -44,23 +46,25 @@
         android:foreground="?attr/selectableItemBackground"
         android:orientation="horizontal"
         android:paddingBottom="12dp"
-        android:paddingRight="8dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="8dp"
         android:paddingTop="12dp"
-        android:layout_gravity="left"
+        android:layout_gravity="start"
         android:gravity="center">
 
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
             android:src="@drawable/outline_assignment"
-            android:tint="@color/colorOnBackground"/>
+            android:tint="@color/colorOnBackground"
+            android:contentDescription="@string/assignments" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="Assignments"
+            android:text="@string/assignments"
             android:textSize="20sp"
             android:tint="@color/colorOnBackground" />
 

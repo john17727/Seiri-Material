@@ -11,9 +11,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="New Course"
+        android:text="@string/new_course"
         android:textSize="32sp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
         android:textColor="@color/colorOnBackground"/>
 
@@ -28,16 +28,16 @@
 
         <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:stretchColumns="1"
             android:padding="16dp">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_color"
                 style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-                android:text="Choose a color"
+                android:text="@string/choose_a_color"
                 android:textAllCaps="false"
-                android:gravity="left|center_vertical"
+                android:gravity="start|center_vertical"
                 android:onClick="selectColorClick"
                 android:layout_marginBottom="8dp"/>
 
@@ -50,7 +50,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Course Information"
+                android:text="@string/course_information"
                 android:textSize="24sp"
                 android:paddingBottom="8dp"
                 android:textColor="@color/colorOnBackground"/>
@@ -61,7 +61,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 app:boxStrokeColor="@color/colorSecondary"
                 android:paddingBottom="8dp"
-                android:hint="Name">
+                android:hint="@string/name">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_text_name"
@@ -76,7 +76,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 app:boxStrokeColor="@color/colorSecondary"
                 android:paddingBottom="8dp"
-                android:hint="Building">
+                android:hint="@string/building">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_text_building"
@@ -91,7 +91,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 app:boxStrokeColor="@color/colorSecondary"
                 android:paddingBottom="16dp"
-                android:hint="Room">
+                android:hint="@string/room">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_text_room"
@@ -103,7 +103,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Days"
+                android:text="@string/days"
                 android:textSize="16sp"
                 android:textColor="@color/colorOnBackground"/>
 
@@ -111,43 +111,43 @@
                 android:id="@+id/cb_course_sun"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sunday" />
+                android:text="@string/sunday" />
 
             <CheckBox
                 android:id="@+id/cb_course_mon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Monday" />
+                android:text="@string/monday" />
 
             <CheckBox
                 android:id="@+id/cb_course_tue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tuesday" />
+                android:text="@string/tuesday" />
 
             <CheckBox
                 android:id="@+id/cb_course_wed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Wednesday" />
+                android:text="@string/wednesday" />
 
             <CheckBox
                 android:id="@+id/cb_course_thu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Thursday" />
+                android:text="@string/thursday" />
 
             <CheckBox
                 android:id="@+id/cb_course_fri"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Friday" />
+                android:text="@string/friday" />
 
             <CheckBox
                 android:id="@+id/cb_course_sat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Saturday"
+                android:text="@string/saturday"
                 android:layout_marginBottom="8dp"/>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -156,7 +156,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 app:boxStrokeColor="@color/colorSecondary"
                 android:paddingBottom="8dp"
-                android:hint="Start Time">
+                android:hint="@string/start_time">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_text_course_start"
@@ -173,7 +173,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 app:boxStrokeColor="@color/colorSecondary"
                 android:layout_marginBottom="16dp"
-                android:hint="End Time">
+                android:hint="@string/end_time">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_text_course_end"
@@ -193,7 +193,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Professor Information"
+                android:text="@string/professor_information"
                 android:textSize="24sp"
                 android:layout_marginBottom="8dp"
                 android:textColor="@color/colorOnBackground"/>
@@ -204,7 +204,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 app:boxStrokeColor="@color/colorSecondary"
                 android:paddingBottom="8dp"
-                android:hint="Name">
+                android:hint="@string/name">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_text_prof_name"
@@ -219,7 +219,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 app:boxStrokeColor="@color/colorSecondary"
                 android:paddingBottom="8dp"
-                android:hint="Email">
+                android:hint="@string/email">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_text_prof_email"
@@ -234,7 +234,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 app:boxStrokeColor="@color/colorSecondary"
                 android:paddingBottom="8dp"
-                android:hint="Building">
+                android:hint="@string/building">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_text_prof_building"
@@ -249,7 +249,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 app:boxStrokeColor="@color/colorSecondary"
                 android:layout_marginBottom="20dp"
-                android:hint="Room">
+                android:hint="@string/room">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_text_prof_room"
@@ -261,7 +261,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Office Hours"
+                android:text="@string/office_hours"
                 android:textSize="20sp"
                 android:layout_marginBottom="8dp"
                 android:textColor="@color/colorOnBackground"/>
@@ -269,7 +269,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Days"
+                android:text="@string/days"
                 android:textSize="16sp"
                 android:textColor="@color/colorOnBackground"/>
 
@@ -277,43 +277,43 @@
                 android:id="@+id/cb_prof_sun"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sunday" />
+                android:text="@string/sunday" />
 
             <CheckBox
                 android:id="@+id/cb_prof_mon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Monday" />
+                android:text="@string/monday" />
 
             <CheckBox
                 android:id="@+id/cb_prof_tue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tuesday" />
+                android:text="@string/tuesday" />
 
             <CheckBox
                 android:id="@+id/cb_prof_wed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Wednesday" />
+                android:text="@string/wednesday" />
 
             <CheckBox
                 android:id="@+id/cb_prof_thu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Thursday" />
+                android:text="@string/thursday" />
 
             <CheckBox
                 android:id="@+id/cb_prof_fri"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Friday" />
+                android:text="@string/friday" />
 
             <CheckBox
                 android:id="@+id/cb_prof_sat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Saturday"
+                android:text="@string/saturday"
                 android:layout_marginBottom="8dp"/>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -322,7 +322,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 app:boxStrokeColor="@color/colorSecondary"
                 android:paddingBottom="8dp"
-                android:hint="Start Time">
+                android:hint="@string/start_time">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_text_prof_start"
@@ -339,7 +339,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 app:boxStrokeColor="@color/colorSecondary"
                 android:layout_marginBottom="16dp"
-                android:hint="End Time">
+                android:hint="@string/end_time">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_text_prof_end"
@@ -355,7 +355,7 @@
                 android:id="@+id/add_course_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add Course"
+                android:text="@string/add_course"
                 android:backgroundTint="@color/colorSecondary"
                 android:onClick="addCourseClick"/>
 
