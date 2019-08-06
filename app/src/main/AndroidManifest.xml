@@ -12,14 +12,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.EditCourse"
+        <activity
+            android:name=".activities.AssignmentDetails"/>
+        <activity
+            android:name=".activities.EditCourse"
             android:parentActivityName=".activities.CourseDetails"
-            android:theme="@style/GetInfoTheme"/>
-        <activity android:name=".activities.CourseDetails"
-            android:theme="@style/InfoDetailsTheme"
-            android:launchMode="singleTop" />
-        <activity android:name=".activities.AddAssignment" />
-        <activity android:name=".activities.AssignmentActivity" />
+            android:theme="@style/GetInfoTheme" />
+        <activity
+            android:name=".activities.CourseDetails"
+            android:launchMode="singleTop"
+            android:theme="@style/InfoDetailsTheme" />
+        <activity
+            android:name=".activities.AddAssignment"
+            android:parentActivityName=".activities.AssignmentActivity"
+            android:theme="@style/GetInfoTheme" />
+        <activity
+            android:name=".activities.AssignmentActivity" />
         <activity
             android:name=".activities.AddCourse"
             android:parentActivityName=".activities.CourseActivity"

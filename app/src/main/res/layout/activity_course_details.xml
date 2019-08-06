@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,27 +10,28 @@
         android:id="@+id/name_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Course Name"
         android:textSize="32sp"
         android:paddingBottom="8dp"
-        android:paddingLeft="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="0dp"
         android:textColor="@color/colorOnPrimary"
         android:transitionName="name_transition"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="16dp">
+        android:paddingStart="16dp"
+        android:paddingEnd="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Course Information"
+                android:text="@string/course_information"
                 android:textSize="24sp"
                 android:textColor="@color/colorOnBackground"
                 android:layout_marginVertical="16dp"/>
@@ -39,57 +39,53 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Time"
+                android:text="@string/time"
                 android:textSize="18sp"
                 android:layout_marginBottom="8dp"/>
 
             <TextView
                 android:id="@+id/days_detail"
-                android:text="Mon, Wed, Fri"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textColor="@color/colorOnBackground"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 android:transitionName="days_transition"/>
 
             <TextView
                 android:id="@+id/time_detail"
-                android:text="9 am-10:20am"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textColor="@color/colorOnBackground"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginBottom="16dp"
                 android:transitionName="time_transition"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Location"
+                android:text="@string/location"
                 android:textSize="18sp"
                 android:layout_marginBottom="8dp"/>
 
             <TextView
                 android:id="@+id/building_detail"
-                android:text="CCSB"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textColor="@color/colorOnBackground"
-                android:layout_marginLeft="16dp"/>
+                android:layout_marginStart="16dp"/>
 
             <TextView
                 android:id="@+id/room_detail"
-                android:text="Room G.0701"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textColor="@color/colorOnBackground"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginBottom="32dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Professor Information"
+                android:text="@string/professor_information"
                 android:textSize="24sp"
                 android:textColor="@color/colorOnBackground"
                 android:layout_marginBottom="16dp"/>
@@ -97,73 +93,67 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Professor"
+                android:text="@string/professor"
                 android:textSize="18sp"
                 android:layout_marginBottom="8dp"/>
 
             <TextView
                 android:id="@+id/prof_name_detail"
-                android:text="Dr. Cheon"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textColor="@color/colorOnBackground"
-                android:layout_marginLeft="16dp"/>
+                android:layout_marginStart="16dp"/>
 
             <TextView
                 android:id="@+id/email_detail"
-                android:text="ycheon@utep.edu"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textColor="@color/colorOnBackground"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginBottom="16dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Office Hours"
+                android:text="@string/office_hours"
                 android:textSize="18sp"
                 android:layout_marginBottom="8dp"/>
 
             <TextView
                 android:id="@+id/prof_days_detail"
-                android:text="Tue, Thur"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textColor="@color/colorOnBackground"
-                android:layout_marginLeft="16dp"/>
+                android:layout_marginStart="16dp"/>
 
             <TextView
                 android:id="@+id/prof_time_detail"
-                android:text="2pm-4pm"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textColor="@color/colorOnBackground"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginBottom="16dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Office Location"
+                android:text="@string/office_location"
                 android:textSize="18sp"
                 android:layout_marginBottom="8dp"/>
 
             <TextView
                 android:id="@+id/prof_building_detail"
-                android:text="CCSB"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textColor="@color/colorOnBackground"
-                android:layout_marginLeft="16dp"/>
+                android:layout_marginStart="16dp"/>
 
             <TextView
                 android:id="@+id/prof_room_detail"
-                android:text="Room 3.0701"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textColor="@color/colorOnBackground"
-                android:layout_marginLeft="16dp"/>
+                android:layout_marginStart="16dp"/>
 
         </LinearLayout>
 

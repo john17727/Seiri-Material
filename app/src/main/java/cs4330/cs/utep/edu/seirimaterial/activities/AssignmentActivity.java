@@ -69,6 +69,13 @@ public class AssignmentActivity extends AppCompatActivity {
         assignmentViewModel.getAllAssignments().observe(this, adapter::setAssignments);
         courseViewModel = ViewModelProviders.of(this).get(CourseViewModel.class);
         courseNames = courseViewModel.getAllCourseNames();
+
+        adapter.setOnItemClickListener((assignment, position) -> {
+
+            Intent assignmentDetails = new Intent(AssignmentActivity.this, AssignmentDetails.class);
+            assignmentDetails.putExtra(AssignmentDetails.EXTRA_ID, assignment.getId());
+
+        });
     }
 
     @Override

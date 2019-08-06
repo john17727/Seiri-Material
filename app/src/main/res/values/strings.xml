@@ -1,6 +1,17 @@
 <resources>
     <string name="app_name">Seiri Material</string>
     <string name="undo">Undo</string>
+    <string name="course_information">Course Information</string>
+    <string name="time">Time</string>
+    <string name="location">Location</string>
+    <string name="professor_information">Professor Information</string>
+    <string name="professor">Professor</string>
+    <string name="office_hours">Office Hours</string>
+    <string name="office_location">Office Location</string>
+    <string name="due">Due</string>
+    <string name="type">Type</string>
+    <string name="course">Course</string>
+    <string name="additional_information">Additional Information</string>
 
     <string-array name="assignment_types">
         <item>None</item>
