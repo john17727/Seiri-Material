@@ -16,12 +16,14 @@ public class CourseViewModel extends AndroidViewModel {
     private Repository repository;
     private LiveData<List<Course>> allCourses;
     private List<String> courses;
+    private List<Integer> colors;
 
     public CourseViewModel(@NonNull Application application) throws ExecutionException, InterruptedException {
         super(application);
         repository = new Repository(application);
         allCourses = repository.getAllCourses();
         courses = repository.getAllCourseNames();
+        colors = repository.getAllColors();
     }
 
     public void insert(Course course) {
@@ -46,5 +48,9 @@ public class CourseViewModel extends AndroidViewModel {
 
     public List<String> getAllCourseNames() {
         return courses;
+    }
+
+    public List<Integer> getAllColors() {
+        return colors;
     }
 }

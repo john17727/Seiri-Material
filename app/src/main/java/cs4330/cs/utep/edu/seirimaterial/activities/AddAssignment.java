@@ -32,6 +32,7 @@ public class AddAssignment extends AppCompatActivity {
     private AssignmentViewModel assignmentViewModel;
 
     private List<String> courseNames;
+    private List<Integer> courseColors;
 
     private Calendar calendar;
     private TimePickerDialog.OnTimeSetListener timePicker;
@@ -40,6 +41,7 @@ public class AddAssignment extends AppCompatActivity {
     private long assignmentTime;
     private Date date;
     private long assignmentDate;
+    private int color = 0;
 
     private TextInputEditText editTextTitle;
     private TextInputEditText editTextDueDate;
@@ -69,6 +71,7 @@ public class AddAssignment extends AppCompatActivity {
 
         Intent intent = getIntent();
         courseNames = intent.getStringArrayListExtra(AssignmentActivity.COURSE_NAMES);
+        courseColors = intent.getIntegerArrayListExtra(AssignmentActivity.COURSE_COLORS);
 
         assignmentViewModel = ViewModelProviders.of(this).get(AssignmentViewModel.class);
 
@@ -111,7 +114,7 @@ public class AddAssignment extends AppCompatActivity {
             assignmentTime = 0;
         }
 
-        Assignment assignment = new Assignment(title, assignmentDate, assignmentTime, type, course, extraInfo, 0);
+        Assignment assignment = new Assignment(title, assignmentDate, assignmentTime, type, course, extraInfo, color);
         assignmentViewModel.insert(assignment);
         finish();
 
@@ -140,7 +143,12 @@ public class AddAssignment extends AppCompatActivity {
         courseNames.toArray(names);
         new MaterialAlertDialogBuilder(view.getContext())
                 .setTitle("Course")
-                .setItems(names, ((dialog, which) -> editTextCourse.setText(names[which])))
+                .setItems(names, (dialog, which) -> {
+                    editTextCourse.setText(names[which]);
+                    if(which != 0) {
+                        color = courseColors.get(which - 1);
+                    }
+                })
                 .show();
     }
 

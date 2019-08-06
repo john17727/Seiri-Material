@@ -26,12 +26,14 @@ import cs4330.cs.utep.edu.seirimaterial.R;
 
 public class AssignmentActivity extends AppCompatActivity {
 
-    public static final String COURSE_NAMES = "names";
+    public static final String COURSE_NAMES = "NAMES";
+    public static final String COURSE_COLORS = "COLORS";
 
     private AssignmentViewModel assignmentViewModel;
     private CourseViewModel courseViewModel;
 
     private List<String> courseNames;
+    private List<Integer> courseColors;
 
     BottomAppBar bottomAppBar;
     NavigationBottomSheet bottomSheetFragment;
@@ -49,6 +51,7 @@ public class AssignmentActivity extends AppCompatActivity {
         fab.setOnClickListener(v -> {
             Intent addAssignment = new Intent(v.getContext(), AddAssignment.class);
             addAssignment.putStringArrayListExtra(COURSE_NAMES, (ArrayList<String>) courseNames);
+            addAssignment.putIntegerArrayListExtra(COURSE_COLORS, (ArrayList<Integer>) courseColors);
             startActivity(addAssignment);
         });
 
@@ -69,12 +72,20 @@ public class AssignmentActivity extends AppCompatActivity {
         assignmentViewModel.getAllAssignments().observe(this, adapter::setAssignments);
         courseViewModel = ViewModelProviders.of(this).get(CourseViewModel.class);
         courseNames = courseViewModel.getAllCourseNames();
+        courseColors = courseViewModel.getAllColors();
 
         adapter.setOnItemClickListener((assignment, position) -> {
 
             Intent assignmentDetails = new Intent(AssignmentActivity.this, AssignmentDetails.class);
             assignmentDetails.putExtra(AssignmentDetails.EXTRA_ID, assignment.getId());
-
+            assignmentDetails.putExtra(AssignmentDetails.EXTRA_TITLE, assignment.getTitle());
+            assignmentDetails.putExtra(AssignmentDetails.EXTRA_DUEDATE, assignment.getDueDate());
+            assignmentDetails.putExtra(AssignmentDetails.EXTRA_DUETIME, assignment.getDueTime());
+            assignmentDetails.putExtra(AssignmentDetails.EXTRA_TYPE, assignment.getType());
+            assignmentDetails.putExtra(AssignmentDetails.EXTRA_COURSE, assignment.getCourse());
+            assignmentDetails.putExtra(AssignmentDetails.EXTRA_INFO, assignment.getAddInfo());
+            assignmentDetails.putExtra(AssignmentDetails.EXTRA_COLOR, assignment.getColor());
+            startActivity(assignmentDetails);
         });
     }
 

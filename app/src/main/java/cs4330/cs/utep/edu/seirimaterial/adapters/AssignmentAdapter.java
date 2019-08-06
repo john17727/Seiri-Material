@@ -20,7 +20,7 @@ import cs4330.cs.utep.edu.seirimaterial.R;
 
 public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.AssignmentHolder> {
 
-    private static final String DATE_FORMAT = "MM/dd/yy";
+    private static final String DATE_FORMAT = "EEE, MMM dd";
     private static final String TIME_FORMAT = "h:mm aa";
 
     private List<Assignment> assignments = new ArrayList<>();
@@ -37,7 +37,7 @@ public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.As
     public void onBindViewHolder(@NonNull AssignmentHolder holder, int position) {
         Assignment currentAssignment = assignments.get(position);
 
-        //holder.card.setCardBackgroundColor(currentAssignment.getColor());
+        holder.card.setCardBackgroundColor(currentAssignment.getColor());
         holder.textViewTitle.setText(currentAssignment.getTitle());
 
         if(currentAssignment.getDueDate() == 0) {

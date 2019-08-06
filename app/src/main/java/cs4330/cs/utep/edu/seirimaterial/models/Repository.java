@@ -5,7 +5,6 @@ import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -16,7 +15,6 @@ public class Repository {
 
     private CourseDao courseDao;
     private LiveData<List<Course>> allCourses;
-    private List<String> allCourseNames;
 
     private AssignmentDao assignmentDao;
     private LiveData<List<Assignment>> allAssignments;
@@ -51,6 +49,10 @@ public class Repository {
 
     List<String> getAllCourseNames() throws ExecutionException, InterruptedException {
         return new getAllCourseNamesAsyncTask(courseDao).execute().get();
+    }
+
+    List<Integer> getAllColors() throws ExecutionException, InterruptedException {
+        return new getAllColorsAsyncTask(courseDao).execute().get();
     }
 
 
@@ -149,6 +151,20 @@ public class Repository {
         @Override
         protected List<String> doInBackground(Void... voids) {
             return courseDao.getAllCourseNames();
+        }
+    }
+
+    private static class getAllColorsAsyncTask extends AsyncTask<Void, Void, List<Integer>> {
+
+        private CourseDao courseDao;
+
+        private getAllColorsAsyncTask(CourseDao courseDao) {
+            this.courseDao = courseDao;
+        }
+
+        @Override
+        protected List<Integer> doInBackground(Void... voids) {
+            return courseDao.getAllColors();
         }
     }
 

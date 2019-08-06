@@ -31,4 +31,7 @@ public interface CourseDao {
 
     @Query("SELECT name FROM course_table ORDER BY name ASC")
     List<String> getAllCourseNames();
+
+    @Query("SELECT color FROM course_table ORDER BY name ASC")
+    List<Integer> getAllColors();
 }

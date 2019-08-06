@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.AssignmentDetails"/>
+            android:name=".activities.AssignmentDetails"
+            android:launchMode="singleTop"
+            android:theme="@style/InfoDetailsTheme"/>
         <activity
             android:name=".activities.EditCourse"
             android:parentActivityName=".activities.CourseDetails"
