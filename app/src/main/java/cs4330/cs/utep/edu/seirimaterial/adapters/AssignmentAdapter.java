@@ -67,6 +67,10 @@ public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.As
         notifyDataSetChanged();
     }
 
+    public Assignment getAssignmentAt(int position) {
+        return assignments.get(position);
+    }
+
     class AssignmentHolder extends RecyclerView.ViewHolder {
         private TextView textViewTitle;
         private TextView textViewDate;

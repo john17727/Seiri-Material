@@ -1,7 +1,10 @@
 package cs4330.cs.utep.edu.seirimaterial.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,11 +17,13 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cs4330.cs.utep.edu.seirimaterial.adapters.AssignmentAdapter;
+import cs4330.cs.utep.edu.seirimaterial.data.Assignment;
 import cs4330.cs.utep.edu.seirimaterial.models.AssignmentViewModel;
 import cs4330.cs.utep.edu.seirimaterial.models.CourseViewModel;
 import cs4330.cs.utep.edu.seirimaterial.utils.NavigationBottomSheet;
@@ -47,7 +52,7 @@ public class AssignmentActivity extends AppCompatActivity {
         bottomAppBar = findViewById(R.id.bottomAppBar);
         setSupportActionBar(bottomAppBar);
 
-        fab = findViewById(R.id.fab);
+        fab = findViewById(R.id.fabA);
         fab.setOnClickListener(v -> {
             Intent addAssignment = new Intent(v.getContext(), AddAssignment.class);
             addAssignment.putStringArrayListExtra(COURSE_NAMES, (ArrayList<String>) courseNames);
@@ -73,6 +78,25 @@ public class AssignmentActivity extends AppCompatActivity {
         courseViewModel = ViewModelProviders.of(this).get(CourseViewModel.class);
         courseNames = courseViewModel.getAllCourseNames();
         courseColors = courseViewModel.getAllColors();
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
+                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                Assignment assignment = adapter.getAssignmentAt(viewHolder.getAdapterPosition());
+                assignmentViewModel.delete(assignment);
+                Snackbar.make(findViewById(R.id.assignments), assignment.getTitle() + " Deleted", Snackbar.LENGTH_LONG).setAction("Undo", v -> assignmentViewModel.insert(assignment))
+                        .setActionTextColor(ContextCompat.
+                                getColor(AssignmentActivity.this, R.color.colorOnSecondary))
+                        .setAnchorView(R.id.fabA)
+                        .show();
+            }
+        }).attachToRecyclerView(recyclerView);
 
         adapter.setOnItemClickListener((assignment, position) -> {
 
