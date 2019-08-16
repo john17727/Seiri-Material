@@ -38,6 +38,7 @@
     <string name="courses">Courses</string>
     <string name="edit_course">Edit Course</string>
     <string name="save_changes">Save Changes</string>
+    <string name="edit_assignment">Edit Assignment</string>
 
     <string-array name="assignment_types">
         <item>None</item>

@@ -101,6 +101,8 @@ public class AssignmentActivity extends AppCompatActivity {
         adapter.setOnItemClickListener((assignment, position) -> {
 
             Intent assignmentDetails = new Intent(AssignmentActivity.this, AssignmentDetails.class);
+            assignmentDetails.putStringArrayListExtra(COURSE_NAMES, (ArrayList<String>) courseNames);
+            assignmentDetails.putIntegerArrayListExtra(COURSE_COLORS, (ArrayList<Integer>) courseColors);
             assignmentDetails.putExtra(AssignmentDetails.EXTRA_ID, assignment.getId());
             assignmentDetails.putExtra(AssignmentDetails.EXTRA_TITLE, assignment.getTitle());
             assignmentDetails.putExtra(AssignmentDetails.EXTRA_DUEDATE, assignment.getDueDate());
