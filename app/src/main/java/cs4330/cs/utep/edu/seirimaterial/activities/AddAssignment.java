@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.SimpleDateFormat;
@@ -41,7 +42,7 @@ public class AddAssignment extends AppCompatActivity {
     private long assignmentTime;
     private Date date;
     private long assignmentDate;
-    private int color = 0;
+    private int color = -14606047;
 
     private TextInputEditText editTextTitle;
     private TextInputEditText editTextDueDate;
@@ -114,9 +115,13 @@ public class AddAssignment extends AppCompatActivity {
             assignmentTime = 0;
         }
 
-        Assignment assignment = new Assignment(title, assignmentDate, assignmentTime, type, course, extraInfo, color);
-        assignmentViewModel.insert(assignment);
-        finish();
+        if(title.isEmpty()) {
+            Snackbar.make(findViewById(R.id.add_assignment), "A title must be given to the assignment", Snackbar.LENGTH_SHORT).show();
+        } else {
+            Assignment assignment = new Assignment(title, assignmentDate, assignmentTime, type, course, extraInfo, color);
+            assignmentViewModel.insert(assignment);
+            finish();
+        }
 
     }
 

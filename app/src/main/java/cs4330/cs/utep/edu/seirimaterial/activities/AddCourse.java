@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.CheckBox;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.SimpleDateFormat;
@@ -307,9 +308,13 @@ public class AddCourse extends AppCompatActivity implements View.OnClickListener
             profEndTime = "";
         }
 
-        Course newCourse = new Course(name, building, room, days, courseStartTime, courseEndTime, profName, profEmail, profBuilding, profRoom, daysProf, profStartTime, profEndTime, cardColor);
-        courseViewModel.insert(newCourse);
-        finish();
+        if(name.isEmpty()) {
+            Snackbar.make(findViewById(R.id.add_course), "A name must be given to the course", Snackbar.LENGTH_SHORT).show();
+        } else {
+            Course newCourse = new Course(name, building, room, days, courseStartTime, courseEndTime, profName, profEmail, profBuilding, profRoom, daysProf, profStartTime, profEndTime, cardColor);
+            courseViewModel.insert(newCourse);
+            finish();
+        }
     }
 
     public String getChosenDays(String[] chosenDays) {

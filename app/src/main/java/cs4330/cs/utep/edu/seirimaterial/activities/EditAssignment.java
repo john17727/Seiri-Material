@@ -43,7 +43,7 @@ public class EditAssignment extends AppCompatActivity {
     private long assignmentTime;
     private Date date;
     private long assignmentDate;
-    private int color = 0;
+    private int color = -14606047;
 
     private TextInputEditText editTextTitle;
     private TextInputEditText editTextDueDate;
@@ -116,10 +116,14 @@ public class EditAssignment extends AppCompatActivity {
         editTextTitle.setText(intent.getStringExtra(AssignmentDetails.EXTRA_TITLE));
 
         assignmentDate = intent.getIntExtra(AssignmentDetails.EXTRA_DUEDATE, -1);
-        editTextDueDate.setText(dateFormat.format(assignmentDate));
+        if(!(assignmentDate <= 0)) {
+            editTextDueDate.setText(dateFormat.format(assignmentDate));
+        }
 
         assignmentTime = intent.getLongExtra(AssignmentDetails.EXTRA_DUETIME, -1);
-        editTextDueTime.setText(timeFormat.format(assignmentTime));
+        if(!(assignmentTime <= 0)) {
+            editTextDueTime.setText(timeFormat.format(assignmentTime));
+        }
 
         editTextType.setText(intent.getStringExtra(AssignmentDetails.EXTRA_TYPE));
         editTextCourse.setText(intent.getStringExtra(AssignmentDetails.EXTRA_COURSE));
@@ -149,6 +153,7 @@ public class EditAssignment extends AppCompatActivity {
         back.putExtra(AssignmentDetails.EXTRA_TITLE, title);
         back.putExtra(AssignmentDetails.EXTRA_DUEDATE, assignmentDate);
         back.putExtra(AssignmentDetails.EXTRA_DUETIME, assignmentTime);
+        back.putExtra(AssignmentDetails.EXTRA_TYPE, type);
         back.putExtra(AssignmentDetails.EXTRA_COURSE, course);
         back.putExtra(AssignmentDetails.EXTRA_INFO, extraInfo);
         back.putExtra(AssignmentDetails.EXTRA_COLOR, color);
@@ -184,6 +189,8 @@ public class EditAssignment extends AppCompatActivity {
                     editTextCourse.setText(names[which]);
                     if(which != 0) {
                         color = courseColors.get(which - 1);
+                    } else {
+                        color = -14606047;
                     }
                 })
                 .show();

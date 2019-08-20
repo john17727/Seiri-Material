@@ -40,7 +40,7 @@ public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.As
         holder.card.setCardBackgroundColor(currentAssignment.getColor());
         holder.textViewTitle.setText(currentAssignment.getTitle());
 
-        if(currentAssignment.getDueDate() == 0) {
+        if(currentAssignment.getDueDate() <= 0) {
             holder.textViewDate.setText("");
         } else {
             Date date = new Date(currentAssignment.getDueDate());
@@ -48,7 +48,7 @@ public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.As
             holder.textViewDate.setText(dateFormat.format(date));
         }
 
-        if(currentAssignment.getDueTime() == 0) {
+        if(currentAssignment.getDueTime() <= 0) {
             holder.textViewTime.setText("");
         } else {
             Date time = new Date(currentAssignment.getDueTime());

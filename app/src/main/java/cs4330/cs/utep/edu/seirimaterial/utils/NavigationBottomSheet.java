@@ -1,7 +1,9 @@
 package cs4330.cs.utep.edu.seirimaterial.utils;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,18 +31,29 @@ public class NavigationBottomSheet extends BottomSheetDialogFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        LinearLayout coursesMenu = view.findViewById(R.id.courses);
-        LinearLayout assignmentMenu = view.findViewById(R.id.assignments);
+        LinearLayout coursesMenu = view.findViewById(R.id.courses_menu);
+        LinearLayout assignmentMenu = view.findViewById(R.id.assignments_menu);
 
         coursesMenu.setOnClickListener(v -> {
-            Intent toCourseActivity = new Intent(v.getContext(), CourseActivity.class);
-            startActivity(toCourseActivity);
+            Log.d("WTF", getActivity().getLocalClassName());
+            if(getActivity().getLocalClassName().equals("activities.AssignmentActivity")) {
+                Intent toCourseActivity = new Intent(v.getContext(), CourseActivity.class);
+                startActivity(toCourseActivity);
+                Objects.requireNonNull(getActivity()).finish();
+            } else {
+                dismiss();
+            }
         });
 
         assignmentMenu.setOnClickListener(v -> {
-            Intent toAssignmentActivity = new Intent(v.getContext(), AssignmentActivity.class);
-            startActivity(toAssignmentActivity);
-            Objects.requireNonNull(getActivity()).finish();
+            Log.d("WTF", getActivity().getLocalClassName());
+            if(getActivity().getLocalClassName().equals("activities.CourseActivity")) {
+                Intent toAssignmentActivity = new Intent(v.getContext(), AssignmentActivity.class);
+                startActivity(toAssignmentActivity);
+                Objects.requireNonNull(getActivity()).finish();
+            } else {
+                dismiss();
+            }
         });
     }
 }
