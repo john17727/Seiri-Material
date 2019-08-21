@@ -42,7 +42,7 @@ public class AddAssignment extends AppCompatActivity {
     private long assignmentTime;
     private Date date;
     private long assignmentDate;
-    private int color = -14606047;
+    private int color = -10395295;
 
     private TextInputEditText editTextTitle;
     private TextInputEditText editTextDueDate;

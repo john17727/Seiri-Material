@@ -2,6 +2,7 @@ package cs4330.cs.utep.edu.seirimaterial.activities;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -44,6 +46,8 @@ public class AssignmentDetails extends AppCompatActivity {
     private List<String> courseNames;
     private List<Integer> courseColors;
 
+    private ConstraintLayout background;
+
     private TextView assignmentTitle;
     private TextView assignmentDue;
     private TextView assignmentType;
@@ -66,6 +70,8 @@ public class AssignmentDetails extends AppCompatActivity {
         setContentView(R.layout.activity_assignment_details);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
+        background = findViewById(R.id.assignments_activity);
+
         assignmentTitle = findViewById(R.id.title_detail);
         assignmentDue = findViewById(R.id.due_detail);
         assignmentType = findViewById(R.id.type_detail);
@@ -82,7 +88,7 @@ public class AssignmentDetails extends AppCompatActivity {
 
         getWindow().setStatusBarColor(color);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color));
-        assignmentTitle.setBackgroundColor(color);
+        background.setBackgroundColor(color);
 
         setTexts(intent);
     }
@@ -162,7 +168,7 @@ public class AssignmentDetails extends AppCompatActivity {
             color = Objects.requireNonNull(data).getIntExtra(EXTRA_COLOR, -1);
             getWindow().setStatusBarColor(color);
             Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(color));
-            assignmentTitle.setBackgroundColor(color);
+            background.setBackgroundColor(color);
 
             setTexts(data);
 

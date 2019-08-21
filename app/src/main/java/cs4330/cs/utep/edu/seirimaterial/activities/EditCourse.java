@@ -223,6 +223,8 @@ public class EditCourse extends AppCompatActivity implements View.OnClickListene
         profStartTime = timesArray[0];
         editTextProfEnd.setText(timesArray[1]);
         profEndTime = timesArray[1];
+
+        setColor(cardColor);
     }
 
     public void setCourseDays(String days) {
@@ -508,8 +510,7 @@ public class EditCourse extends AppCompatActivity implements View.OnClickListene
                 .addListenerButton("Select", (v, position, color) -> {
                     cardColor = color;
                     if(color != 0) {
-                        selectColorButton.setTextColor(Color.parseColor("#fafafa"));
-                        selectColorButton.setBackgroundColor(color);
+                       setColor(color);
                     }
                     colorPicker.dismissDialog();
                 }).setColors(R.array.colorSelections)
@@ -519,5 +520,43 @@ public class EditCourse extends AppCompatActivity implements View.OnClickListene
                 .setColumns(3)
                 .setTitle("Choose a color")
                 .show();
+    }
+
+    public void setColor(int color) {
+        selectColorButton.setTextColor(Color.parseColor("#fafafa"));
+        selectColorButton.setBackgroundColor(color);
+
+        editTextName.setTextColor(color);
+        editTextBuilding.setTextColor(color);
+        editTextRoom.setTextColor(color);
+
+        courseSun.setTextColor(color);
+        courseMon.setTextColor(color);
+        courseTue.setTextColor(color);
+        courseWed.setTextColor(color);
+        courseThu.setTextColor(color);
+        courseFri.setTextColor(color);
+        courseSat.setTextColor(color);
+
+        editTextStart.setTextColor(color);
+        editTextEnd.setTextColor(color);
+
+        editTextProfName.setTextColor(color);
+        editTextProfEmail.setTextColor(color);
+        editTextProfBuilding.setTextColor(color);
+        editTextProfRoom.setTextColor(color);
+
+        profSun.setTextColor(color);
+        profMon.setTextColor(color);
+        profTue.setTextColor(color);
+        profWed.setTextColor(color);
+        profThu.setTextColor(color);
+        profFri.setTextColor(color);
+        profSat.setTextColor(color);
+
+        editTextProfStart.setTextColor(color);
+        editTextProfEnd.setTextColor(color);
+
+        saveChangesButton.setBackgroundColor(color);
     }
 }

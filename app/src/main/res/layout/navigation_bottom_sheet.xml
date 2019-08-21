@@ -34,7 +34,7 @@
             android:layout_gravity="center_vertical"
             android:text="Courses         "
             android:textSize="20sp"
-            android:tint="@color/colorOnBackground" />
+            android:textColor="@color/colorOnBackground"/>
 
     </LinearLayout>
 
@@ -66,7 +66,7 @@
             android:layout_gravity="center_vertical"
             android:text="@string/assignments"
             android:textSize="20sp"
-            android:tint="@color/colorOnBackground" />
+            android:textColor="@color/colorOnBackground" />
 
     </LinearLayout>
 </LinearLayout>

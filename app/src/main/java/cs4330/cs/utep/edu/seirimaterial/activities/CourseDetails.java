@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.Objects;
@@ -37,6 +39,8 @@ public class CourseDetails extends AppCompatActivity {
     public static final String EXTRA_COLOR = "COLOR";
 
     private CourseViewModel courseViewModel;
+
+    private LinearLayout background;
 
     private TextView courseName;
     private TextView courseDays;
@@ -74,6 +78,7 @@ public class CourseDetails extends AppCompatActivity {
         setContentView(R.layout.activity_course_details);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
+        background = findViewById(R.id.course_activity);
 
         courseName = findViewById(R.id.name_detail);
         courseDays = findViewById(R.id.days_detail);
@@ -96,7 +101,7 @@ public class CourseDetails extends AppCompatActivity {
 
         getWindow().setStatusBarColor(color);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color));
-        courseName.setBackgroundColor(color);
+        background.setBackgroundColor(color);
 
         setTexts(intent);
     }
@@ -111,6 +116,7 @@ public class CourseDetails extends AppCompatActivity {
 
         profName.setText(profNameS);
         profEmail.setText(profEmailS);
+        profEmail.setTextColor(color);
         profDays.setText(profDaysS);
         profTime.setText(profTimeS);
         profBuilding.setText(profBuildingS);
@@ -180,7 +186,7 @@ public class CourseDetails extends AppCompatActivity {
             color = Objects.requireNonNull(data).getIntExtra(EXTRA_COLOR, -1);
             getWindow().setStatusBarColor(color);
             Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(color));
-            courseName.setBackgroundColor(color);
+            background.setBackgroundColor(color);
 
             setTexts(data);
 
@@ -207,5 +213,12 @@ public class CourseDetails extends AppCompatActivity {
             course.setId(id);
             courseViewModel.update(course);
         }
+    }
+
+    public void sendEmail(View view) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("plain/text");
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[] { profEmail.getText().toString().trim() });
+        startActivity(Intent.createChooser(intent, ""));
     }
 }

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProviders;
 import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 
@@ -66,6 +67,8 @@ public class AddCourse extends AppCompatActivity implements View.OnClickListener
 
     private CheckBox profSun, profMon, profTue, profWed, profThu, profFri, profSat;
 
+    private MaterialButton addButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +80,7 @@ public class AddCourse extends AppCompatActivity implements View.OnClickListener
         calendar = Calendar.getInstance();
 
         selectColorButton = findViewById(R.id.button_color);
-        cardColor = Color.parseColor("#212121");
+        cardColor = Color.parseColor("#616161");
 
         editTextName = findViewById(R.id.edit_text_name);
         editTextBuilding = findViewById(R.id.edit_text_building);
@@ -127,6 +130,11 @@ public class AddCourse extends AppCompatActivity implements View.OnClickListener
         editTextProfStart.setKeyListener(null);
         editTextProfEnd = findViewById(R.id.edit_text_prof_end);
         editTextProfEnd.setKeyListener(null);
+
+        addButton = findViewById(R.id.add_course_button);
+
+        selectColorButton.setTextColor(Color.parseColor("#212121"));
+        selectColorButton.setBackgroundColor(0);
 
         courseViewModel = ViewModelProviders.of(this).get(CourseViewModel.class);
 
@@ -373,16 +381,53 @@ public class AddCourse extends AppCompatActivity implements View.OnClickListener
                 .addListenerButton("Select", (v, position, color) -> {
                     cardColor = color;
                     if(color != 0) {
-                        selectColorButton.setTextColor(Color.parseColor("#fafafa"));
-                        selectColorButton.setBackgroundColor(color);
+                        setColor(color);
                     }
                     colorPicker.dismissDialog();
                 }).setColors(R.array.colorSelections)
-                .setDefaultColorButton(Color.parseColor("#212121"))
+                .setDefaultColorButton(Color.parseColor("#616161"))
                 .disableDefaultButtons(true)
                 .setRoundColorButton(true)
                 .setColumns(3)
                 .setTitle("Choose a color")
                 .show();
+    }
+
+    public void setColor(int color) {
+        selectColorButton.setTextColor(Color.parseColor("#fafafa"));
+        selectColorButton.setBackgroundColor(color);
+
+        editTextName.setTextColor(color);
+        editTextBuilding.setTextColor(color);
+        editTextRoom.setTextColor(color);
+
+        courseSun.setTextColor(color);
+        courseMon.setTextColor(color);
+        courseTue.setTextColor(color);
+        courseWed.setTextColor(color);
+        courseThu.setTextColor(color);
+        courseFri.setTextColor(color);
+        courseSat.setTextColor(color);
+
+        editTextStart.setTextColor(color);
+        editTextEnd.setTextColor(color);
+
+        editTextProfName.setTextColor(color);
+        editTextProfEmail.setTextColor(color);
+        editTextProfBuilding.setTextColor(color);
+        editTextProfRoom.setTextColor(color);
+
+        profSun.setTextColor(color);
+        profMon.setTextColor(color);
+        profTue.setTextColor(color);
+        profWed.setTextColor(color);
+        profThu.setTextColor(color);
+        profFri.setTextColor(color);
+        profSat.setTextColor(color);
+
+        editTextProfStart.setTextColor(color);
+        editTextProfEnd.setTextColor(color);
+
+        addButton.setBackgroundColor(color);
     }
 }

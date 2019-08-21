@@ -224,7 +224,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_text_prof_email"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="textWebEmailAddress" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
