@@ -81,6 +81,7 @@ public class CourseActivity extends AppCompatActivity {
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 Course course = adapter.getCourseAt(viewHolder.getAdapterPosition());
                 courseViewModel.delete(course);
+                bottomAppBar.getBehavior().slideUp(bottomAppBar);
                 Snackbar.make(findViewById(R.id.courses), course.getName() + " Deleted", Snackbar.LENGTH_LONG).setAction(R.string.undo, v -> courseViewModel.insert(course))
                         .setActionTextColor(ContextCompat
                                 .getColor(CourseActivity.this, R.color.colorOnSecondary))

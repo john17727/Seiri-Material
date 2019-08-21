@@ -24,7 +24,8 @@
         <item name="bottomAppBarStyle">@style/Widget.MaterialComponents.BottomAppBar</item>
         <item name="checkboxStyle">@style/Widget.MaterialComponents.CompoundButton.CheckBox</item>
         <item name="android:windowLightStatusBar">true</item>
-        <item name="android:navigationBarColor">@color/colorPrimary</item>
+        <item name="android:navigationBarColor">@color/colorSurface</item>
+        <item name="android:windowLightNavigationBar">true</item>
 
         <item name="android:windowActivityTransitions">true</item>
 
@@ -79,7 +80,7 @@
     </style>
 
     <style name="WhiteActionBar" parent="ThemeOverlay.MaterialComponents.ActionBar">
-        <item name="android:background">@color/colorOnBackground</item>
+        <item name="android:background">@color/colorBackground</item>
     </style>
 
     <style name="ShapeAppearance.MyApp.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">

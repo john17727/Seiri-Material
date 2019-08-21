@@ -8,23 +8,23 @@
     <color name="colorOnSecondary">#ffffff</color>
     <color name="colorSurface">#ffffff</color>
     <color name="colorOnSurface">#000000</color>
-    <color name="colorBackground">#fafafa</color>
+    <color name="colorBackground">#f5f5f5</color>
     <color name="colorOnBackground">#000000</color>
 
     <color name="Blue">#1e88e5</color>
-    <color name="Green">#1b5e20</color>
-    <color name="Yellow">#fdd835</color>
+    <color name="Green">#43a047</color>
+    <color name="Yellow">#ffd95a</color>
     <color name="Black">#212121</color>
     <color name="Cyan">#00b8d4</color>
     <color name="Orange">#bf360c</color>
     <color name="Pink">#c51162</color>
     <color name="Grey">#484848</color>
     <color name="Teal">#00bfa5</color>
-    <color name="Brown">#5f4339</color>
+    <color name="Magenta">#c51162</color>
 
     <array name="colorSelections">
         <item>@color/Grey</item>
-        <item>@color/Brown</item>
+        <item>@color/Magenta</item>
         <item>@color/Yellow</item>
         <item>@color/Green</item>
         <item>@color/Orange</item>
