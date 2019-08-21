@@ -13,6 +13,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
@@ -36,6 +38,7 @@ public class AssignmentActivity extends AppCompatActivity {
 
     private AssignmentViewModel assignmentViewModel;
     private CourseViewModel courseViewModel;
+    AssignmentAdapter adapter;
 
     private List<String> courseNames;
     private List<Integer> courseColors;
@@ -43,6 +46,8 @@ public class AssignmentActivity extends AppCompatActivity {
     BottomAppBar bottomAppBar;
     NavigationBottomSheet bottomSheetFragment;
     FloatingActionButton fab;
+
+    private Menu hiddenMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +74,6 @@ public class AssignmentActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
-        final AssignmentAdapter adapter;
         adapter = new AssignmentAdapter();
         recyclerView.setAdapter(adapter);
 
@@ -117,16 +121,21 @@ public class AssignmentActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        hiddenMenu = menu;
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.navigation, menu);
+        menuInflater.inflate(R.menu.assignment_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
-            case R.id.delete_all_courses:
-                toast("Filter");
+            case R.id.filter:
+                showPopup(findViewById(R.id.filter));
+                break;
+            case R.id.clear:
+                adapter.getFilter().filter(null);
+                hiddenMenu.findItem(R.id.clear).setVisible(false);
                 break;
         }
         return super.onOptionsItemSelected(menuItem);
@@ -135,5 +144,20 @@ public class AssignmentActivity extends AppCompatActivity {
     public void toast(String msg) {
         Toast toast = Toast.makeText(this, msg, Toast.LENGTH_LONG);
         toast.show();
+    }
+
+    public void showPopup(View view) {
+        List<String> names = new ArrayList<>(courseNames);
+        names.add(0, "None");
+        PopupMenu popupMenu = new PopupMenu(this, view);
+        for(String name:names) {
+            popupMenu.getMenu().add(name);
+        }
+        popupMenu.setOnMenuItemClickListener(item -> {
+            adapter.getFilter().filter(item.getTitle());
+            hiddenMenu.findItem(R.id.clear).setVisible(true);
+            return false;
+        });
+        popupMenu.show();
     }
 }

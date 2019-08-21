@@ -1,8 +1,11 @@
 package cs4330.cs.utep.edu.seirimaterial.adapters;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,18 +21,20 @@ import java.util.List;
 import cs4330.cs.utep.edu.seirimaterial.data.Assignment;
 import cs4330.cs.utep.edu.seirimaterial.R;
 
-public class AssignmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class AssignmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Filterable {
 
     private static final String DATE_FORMAT = "EEE, MMM dd";
     private static final String TIME_FORMAT = "h:mm aa";
 
     public static final int FOOTER_VIEW = 1;
     private List<Assignment> assignments = new ArrayList<>();
+    private List<Assignment> assignmentsFull;
     private OnItemClickListener listener;
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        assignmentsFull = new ArrayList<>(assignments);
         View itemView;
 
         if(viewType == FOOTER_VIEW) {
@@ -138,5 +143,43 @@ public class AssignmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
+
+    @Override
+    public Filter getFilter() {
+        return assignmentFilter;
+    }
+
+    private Filter assignmentFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Assignment> filteredList = new ArrayList<>();
+            //assignmentsFull = new ArrayList<>(assignments);
+
+            if(constraint == null || constraint.length() == 0) {
+                filteredList.addAll(assignmentsFull);
+            } else {
+                String filterPattern = constraint.toString();
+
+                for(Assignment assignment:assignmentsFull) {
+                    if(assignment.getCourse().contains(filterPattern)) {
+                        Log.d("WTF", assignment.getCourse());
+                        filteredList.add(assignment);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            assignments.clear();
+            assignments.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
 }
 

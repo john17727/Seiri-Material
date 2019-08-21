@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/filter"
+        android:icon="@drawable/round_filter_list"
+        android:title="Filter"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/clear"
+        android:icon="@drawable/round_clear"
+        android:title="Clear"
+        android:visible="false"
+        app:showAsAction="ifRoom" />
+
+</menu>

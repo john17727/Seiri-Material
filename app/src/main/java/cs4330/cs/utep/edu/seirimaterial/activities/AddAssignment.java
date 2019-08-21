@@ -106,6 +106,9 @@ public class AddAssignment extends AppCompatActivity {
         String title = Objects.requireNonNull(editTextTitle.getText()).toString();
         String type = Objects.requireNonNull(editTextType.getText()).toString();
         String course = Objects.requireNonNull(editTextCourse.getText()).toString();
+        if(course.isEmpty()) {
+            course = "None";
+        }
         String extraInfo = Objects.requireNonNull(editTextAddiInfo.getText()).toString();
 
         if(Objects.requireNonNull(editTextDueDate.getText()).toString().isEmpty()) {
