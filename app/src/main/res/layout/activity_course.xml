@@ -18,13 +18,10 @@
             android:layout_gravity="top"
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
+            android:layout_marginBottom="8dp"
             android:text="@string/courses"
             android:textColor="@color/colorOnBackground"
             android:textSize="32sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_courses"
@@ -45,8 +42,7 @@
         app:menu="@menu/navigation"
         app:navigationIcon="@drawable/round_menu"
         app:hideOnScroll="true"
-        app:layout_scrollFlags="scroll|enterAlways"
-        app:fabAlignmentMode="end"/>
+        app:layout_scrollFlags="scroll|enterAlways"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"

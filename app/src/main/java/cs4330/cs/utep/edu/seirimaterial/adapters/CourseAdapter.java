@@ -16,39 +16,70 @@ import java.util.List;
 import cs4330.cs.utep.edu.seirimaterial.data.Course;
 import cs4330.cs.utep.edu.seirimaterial.R;
 
-public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseHolder> {
+public class CourseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    public static final int FOOTER_VIEW = 1;
     private List<Course> courses = new ArrayList<>();
     private OnItemClickListener listener;
 
 
     @NonNull
     @Override
-    public CourseHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.course_item, parent, false);
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemView;
+
+        if(viewType == FOOTER_VIEW) {
+            itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.footer, parent, false);
+            return new FooterHolder(itemView);
+        }
+
+        itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.course_item, parent, false);
         return new CourseHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CourseHolder holder, int position) {
-        Course currentCourse = courses.get(position);
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        if(holder instanceof CourseHolder) {
+            CourseHolder courseHolder = (CourseHolder) holder;
 
-        holder.card.setCardBackgroundColor(currentCourse.getColor());
-        holder.textViewName.setText(currentCourse.getName());
-        holder.textViewDays.setText(currentCourse.getDays());
-        String startTime = currentCourse.getStartTime();
-        String endTime = currentCourse.getEndTime();
-        if (startTime.isEmpty() && endTime.isEmpty()) {
-            holder.textViewTime.setText("");
-        } else {
-            String fullTime = startTime + "-" + endTime;
-            holder.textViewTime.setText(fullTime);
+            Course currentCourse = courses.get(position);
+
+            courseHolder.card.setCardBackgroundColor(currentCourse.getColor());
+            courseHolder.textViewName.setText(currentCourse.getName());
+            courseHolder.textViewDays.setText(currentCourse.getDays());
+            String startTime = currentCourse.getStartTime();
+            String endTime = currentCourse.getEndTime();
+            if (startTime.isEmpty() && endTime.isEmpty()) {
+                courseHolder.textViewTime.setText("");
+            } else {
+                String fullTime = startTime + "-" + endTime;
+                courseHolder.textViewTime.setText(fullTime);
+            }
+        } else if (holder instanceof FooterHolder) {
+            FooterHolder footerHolder = (FooterHolder) holder;
+            footerHolder.footer.setText("");
         }
     }
 
     @Override
     public int getItemCount() {
-        return courses.size();
+        if(courses == null) {
+            return 0;
+        }
+        if(courses.size() == 0) {
+            return 1;
+        }
+
+        return courses.size() + 1;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if(position == courses.size()) {
+            return FOOTER_VIEW;
+        }
+
+        return super.getItemViewType(position);
     }
 
     public void setCourses(List<Course> courses) {
@@ -80,6 +111,14 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseHold
                     listener.onItemClick(courses.get(position), position);
                 }
             });
+        }
+    }
+
+    class FooterHolder extends RecyclerView.ViewHolder {
+        private TextView footer;
+        FooterHolder(@NonNull View itemView) {
+            super(itemView);
+            footer = itemView.findViewById(R.id.footer);
         }
     }
 
