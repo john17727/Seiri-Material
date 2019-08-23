@@ -18,7 +18,7 @@ import cs4330.cs.utep.edu.seirimaterial.R;
 
 public class CourseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    public static final int FOOTER_VIEW = 1;
+    private static final int FOOTER_VIEW = 1;
     private List<Course> courses = new ArrayList<>();
     private OnItemClickListener listener;
 

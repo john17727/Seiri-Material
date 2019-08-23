@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Seiri Material</string>
+    <string name="app_name">Seiri</string>
     <string name="undo">Undo</string>
     <string name="time">Time</string>
     <string name="location">Location</string>

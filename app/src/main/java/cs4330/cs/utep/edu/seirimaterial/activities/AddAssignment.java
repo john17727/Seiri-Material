@@ -112,10 +112,10 @@ public class AddAssignment extends AppCompatActivity {
         String extraInfo = Objects.requireNonNull(editTextAddiInfo.getText()).toString();
 
         if(Objects.requireNonNull(editTextDueDate.getText()).toString().isEmpty()) {
-            assignmentDate = 0;
+            assignmentDate = Long.MAX_VALUE;
         }
         if(Objects.requireNonNull(editTextDueTime.getText()).toString().isEmpty()) {
-            assignmentTime = 0;
+            assignmentTime = Long.MAX_VALUE;
         }
 
         if(title.isEmpty()) {

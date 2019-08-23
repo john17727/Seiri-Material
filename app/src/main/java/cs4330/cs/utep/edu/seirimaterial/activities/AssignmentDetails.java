@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -98,12 +97,12 @@ public class AssignmentDetails extends AppCompatActivity {
         assignmentTitle.setText(title);
 
         String due = "";
-        if(dueDate != 0) {
+        if(dueDate != Long.MAX_VALUE) {
             Date date = new Date(dueDate);
             SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.US);
             due += dateFormat.format(date);
         }
-        if(dueTime != 0) {
+        if(dueTime != Long.MAX_VALUE) {
             Date time = new Date(dueTime);
             SimpleDateFormat dateFormat = new SimpleDateFormat(TIME_FORMAT, Locale.US);
             due += " at " + dateFormat.format(time);
@@ -117,8 +116,8 @@ public class AssignmentDetails extends AppCompatActivity {
     void setData(Intent intent) {
         id = intent.getIntExtra(EXTRA_ID, -1);
         title = intent.getStringExtra(EXTRA_TITLE);
-        dueDate = intent.getLongExtra(EXTRA_DUEDATE, -1);
-        dueTime = intent.getLongExtra(EXTRA_DUETIME, -1);
+        dueDate = intent.getLongExtra(EXTRA_DUEDATE, Long.MAX_VALUE);
+        dueTime = intent.getLongExtra(EXTRA_DUETIME, Long.MAX_VALUE);
         type = intent.getStringExtra(EXTRA_TYPE);
         course = intent.getStringExtra(EXTRA_COURSE);
         info = intent.getStringExtra(EXTRA_INFO);

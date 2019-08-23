@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import cs4330.cs.utep.edu.seirimaterial.data.Assignment;
 import cs4330.cs.utep.edu.seirimaterial.R;
@@ -26,7 +27,7 @@ public class AssignmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     private static final String DATE_FORMAT = "EEE, MMM dd";
     private static final String TIME_FORMAT = "h:mm aa";
 
-    public static final int FOOTER_VIEW = 1;
+    private static final int FOOTER_VIEW = 1;
     private List<Assignment> assignments = new ArrayList<>();
     private List<Assignment> assignmentsFull;
     private OnItemClickListener listener;
@@ -56,19 +57,19 @@ public class AssignmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             assignmentHolder.card.setCardBackgroundColor(currentAssignment.getColor());
             assignmentHolder.textViewTitle.setText(currentAssignment.getTitle());
 
-            if(currentAssignment.getDueDate() <= 0) {
+            if(currentAssignment.getDueDate() == Long.MAX_VALUE) {
                 assignmentHolder.textViewDate.setText("");
             } else {
                 Date date = new Date(currentAssignment.getDueDate());
-                SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+                SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.US);
                 assignmentHolder.textViewDate.setText(dateFormat.format(date));
             }
 
-            if(currentAssignment.getDueTime() <= 0) {
+            if(currentAssignment.getDueTime() == Long.MAX_VALUE) {
                 assignmentHolder.textViewTime.setText("");
             } else {
                 Date time = new Date(currentAssignment.getDueTime());
-                SimpleDateFormat timeFormat = new SimpleDateFormat(TIME_FORMAT);
+                SimpleDateFormat timeFormat = new SimpleDateFormat(TIME_FORMAT, Locale.US);
                 assignmentHolder.textViewTime.setText(timeFormat.format(time));
             }
         } else if (holder instanceof CourseAdapter.FooterHolder) {
@@ -99,6 +100,7 @@ public class AssignmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     public void setAssignments(List<Assignment> assignments) {
         this.assignments = assignments;
+        assignmentsFull = new ArrayList<>(this.assignments);
         notifyDataSetChanged();
     }
 
@@ -112,7 +114,7 @@ public class AssignmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         private TextView textViewTime;
         private MaterialCardView card;
 
-        public AssignmentHolder(@NonNull View itemView) {
+        AssignmentHolder(@NonNull View itemView) {
             super(itemView);
             textViewTitle = itemView.findViewById(R.id.text_view_title);
             textViewDate = itemView.findViewById(R.id.text_view_date);

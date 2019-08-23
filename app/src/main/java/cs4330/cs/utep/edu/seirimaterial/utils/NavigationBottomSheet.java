@@ -1,9 +1,7 @@
 package cs4330.cs.utep.edu.seirimaterial.utils;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +33,6 @@ public class NavigationBottomSheet extends BottomSheetDialogFragment {
         LinearLayout assignmentMenu = view.findViewById(R.id.assignments_menu);
 
         coursesMenu.setOnClickListener(v -> {
-            Log.d("WTF", getActivity().getLocalClassName());
             if(getActivity().getLocalClassName().equals("activities.AssignmentActivity")) {
                 Intent toCourseActivity = new Intent(v.getContext(), CourseActivity.class);
                 startActivity(toCourseActivity);
@@ -46,7 +43,6 @@ public class NavigationBottomSheet extends BottomSheetDialogFragment {
         });
 
         assignmentMenu.setOnClickListener(v -> {
-            Log.d("WTF", getActivity().getLocalClassName());
             if(getActivity().getLocalClassName().equals("activities.CourseActivity")) {
                 Intent toAssignmentActivity = new Intent(v.getContext(), AssignmentActivity.class);
                 startActivity(toAssignmentActivity);

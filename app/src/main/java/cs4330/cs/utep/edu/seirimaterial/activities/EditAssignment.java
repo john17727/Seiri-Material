@@ -1,7 +1,6 @@
 package cs4330.cs.utep.edu.seirimaterial.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -20,8 +19,6 @@ import java.util.Locale;
 import java.util.Objects;
 
 import cs4330.cs.utep.edu.seirimaterial.R;
-import cs4330.cs.utep.edu.seirimaterial.data.Assignment;
-import cs4330.cs.utep.edu.seirimaterial.models.AssignmentViewModel;
 
 public class EditAssignment extends AppCompatActivity {
 
@@ -30,8 +27,6 @@ public class EditAssignment extends AppCompatActivity {
 
     SimpleDateFormat dateFormat;
     SimpleDateFormat timeFormat;
-
-    private AssignmentViewModel assignmentViewModel;
 
     private List<String> courseNames;
     private List<Integer> courseColors;
@@ -75,8 +70,6 @@ public class EditAssignment extends AppCompatActivity {
 
         setData(getIntent());
 
-        assignmentViewModel = ViewModelProviders.of(this).get(AssignmentViewModel.class);
-
         datePicker = (view, year, month, dayOfMonth) -> {
             calendar.set(Calendar.YEAR, year);
             calendar.set(Calendar.MONTH, month);
@@ -115,13 +108,13 @@ public class EditAssignment extends AppCompatActivity {
 
         editTextTitle.setText(intent.getStringExtra(AssignmentDetails.EXTRA_TITLE));
 
-        assignmentDate = intent.getIntExtra(AssignmentDetails.EXTRA_DUEDATE, -1);
-        if(!(assignmentDate <= 0)) {
+        assignmentDate = intent.getLongExtra(AssignmentDetails.EXTRA_DUEDATE, Long.MAX_VALUE);
+        if(assignmentDate != Long.MAX_VALUE) {
             editTextDueDate.setText(dateFormat.format(assignmentDate));
         }
 
-        assignmentTime = intent.getLongExtra(AssignmentDetails.EXTRA_DUETIME, -1);
-        if(!(assignmentTime <= 0)) {
+        assignmentTime = intent.getLongExtra(AssignmentDetails.EXTRA_DUETIME, Long.MAX_VALUE);
+        if(assignmentTime != Long.MAX_VALUE) {
             editTextDueTime.setText(timeFormat.format(assignmentTime));
         }
 
@@ -138,13 +131,16 @@ public class EditAssignment extends AppCompatActivity {
         String title = Objects.requireNonNull(editTextTitle.getText()).toString();
         String type = Objects.requireNonNull(editTextType.getText()).toString();
         String course = Objects.requireNonNull(editTextCourse.getText()).toString();
+        if(course.isEmpty()) {
+            course = "None";
+        }
         String extraInfo = Objects.requireNonNull(editTextAddiInfo.getText()).toString();
 
         if(Objects.requireNonNull(editTextDueDate.getText()).toString().isEmpty()) {
-            assignmentDate = 0;
+            assignmentDate = Long.MAX_VALUE;
         }
         if(Objects.requireNonNull(editTextDueTime.getText()).toString().isEmpty()) {
-            assignmentTime = 0;
+            assignmentTime = Long.MAX_VALUE;
         }
 
 

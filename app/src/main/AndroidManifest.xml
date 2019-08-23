@@ -7,33 +7,41 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/seiri_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/seiri_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activities.EditAssignment"
             android:parentActivityName=".activities.AssignmentDetails"
-            android:theme="@style/GetInfoTheme"/>
+            android:theme="@style/GetInfoTheme"
+            android:screenOrientation="portrait"/>
         <activity android:name=".activities.AssignmentDetails"
             android:launchMode="singleTop"
-            android:theme="@style/InfoDetailsTheme" />
+            android:theme="@style/InfoDetailsTheme"
+            android:screenOrientation="portrait" />
         <activity android:name=".activities.EditCourse"
             android:parentActivityName=".activities.CourseDetails"
-            android:theme="@style/GetInfoTheme" />
+            android:theme="@style/GetInfoTheme"
+            android:screenOrientation="portrait" />
         <activity android:name=".activities.CourseDetails"
             android:launchMode="singleTop"
-            android:theme="@style/InfoDetailsTheme" />
+            android:theme="@style/InfoDetailsTheme"
+            android:screenOrientation="portrait" />
         <activity android:name=".activities.AddAssignment"
             android:parentActivityName=".activities.AssignmentActivity"
-            android:theme="@style/GetInfoTheme" />
+            android:theme="@style/GetInfoTheme"
+            android:screenOrientation="portrait" />
         <activity android:name=".activities.AssignmentActivity"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
         <activity android:name=".activities.AddCourse"
             android:parentActivityName=".activities.CourseActivity"
-            android:theme="@style/GetInfoTheme" />
+            android:theme="@style/GetInfoTheme"
+            android:screenOrientation="portrait" />
         <activity android:name=".activities.CourseActivity"
-            android:launchMode="singleTop">
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

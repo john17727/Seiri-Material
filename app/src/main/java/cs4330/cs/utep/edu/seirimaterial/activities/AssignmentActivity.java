@@ -15,7 +15,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
-import android.widget.Toast;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -37,8 +36,7 @@ public class AssignmentActivity extends AppCompatActivity {
     public static final String COURSE_COLORS = "COLORS";
 
     private AssignmentViewModel assignmentViewModel;
-    private CourseViewModel courseViewModel;
-    AssignmentAdapter adapter;
+    private AssignmentAdapter adapter;
 
     private List<String> courseNames;
     private List<Integer> courseColors;
@@ -79,7 +77,7 @@ public class AssignmentActivity extends AppCompatActivity {
 
         assignmentViewModel = ViewModelProviders.of(this).get(AssignmentViewModel.class);
         assignmentViewModel.getAllAssignments().observe(this, adapter::setAssignments);
-        courseViewModel = ViewModelProviders.of(this).get(CourseViewModel.class);
+        CourseViewModel courseViewModel = ViewModelProviders.of(this).get(CourseViewModel.class);
         courseNames = courseViewModel.getAllCourseNames();
         courseColors = courseViewModel.getAllColors();
 
@@ -139,11 +137,6 @@ public class AssignmentActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(menuItem);
-    }
-
-    public void toast(String msg) {
-        Toast toast = Toast.makeText(this, msg, Toast.LENGTH_LONG);
-        toast.show();
     }
 
     public void showPopup(View view) {

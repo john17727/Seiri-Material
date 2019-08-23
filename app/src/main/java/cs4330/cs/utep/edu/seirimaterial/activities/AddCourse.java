@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModelProviders;
 import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 
