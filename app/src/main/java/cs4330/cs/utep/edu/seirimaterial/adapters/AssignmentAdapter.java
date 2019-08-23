@@ -1,6 +1,5 @@
 package cs4330.cs.utep.edu.seirimaterial.adapters;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -155,7 +154,6 @@ public class AssignmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             List<Assignment> filteredList = new ArrayList<>();
-            //assignmentsFull = new ArrayList<>(assignments);
 
             if(constraint == null || constraint.length() == 0) {
                 filteredList.addAll(assignmentsFull);
@@ -164,7 +162,6 @@ public class AssignmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
                 for(Assignment assignment:assignmentsFull) {
                     if(assignment.getCourse().contains(filterPattern)) {
-                        Log.d("WTF", assignment.getCourse());
                         filteredList.add(assignment);
                     }
                 }
